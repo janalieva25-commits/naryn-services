@@ -160,7 +160,6 @@ export default function DashboardPage() {
               <li><Link to="/orders">{t('nav.orders')}</Link></li>
               <li><Link to="/my-ads">{t('nav.myAds')}</Link></li>
               <li><Link to="/messages">{t('nav.messages')}</Link></li>
-              <li><Link to="/notifications">{t('nav.notifications')}</Link></li>
               <li><Link to="/reviews">{t('dashboard.reviews')}</Link></li>
               <li><Link to="/settings">{t('dashboard.settings')}</Link></li>
             </ul>
