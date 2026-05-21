@@ -255,7 +255,7 @@ export default function ProfilePage() {
     <div className="profile-page">
       <div className="profile-cover-section section-card">
         <div className="profile-header-main">
-          <div className="profile-avatar-wrap">
+          <div className="profile-avatar-wrap" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
             {profile.avatar_url ? (
               <img
                 src={profile.avatar_url}
@@ -267,12 +267,12 @@ export default function ProfilePage() {
                 {(profile.full_name || 'U').trim().charAt(0).toUpperCase()}
               </div>
             )}
+            {isSpecialist && <span className="badge-specialist" style={{ margin: 0 }}>{t('dashboard.roleSpecialist')}</span>}
           </div>
 
           <div className="profile-header-info">
             <div className="profile-name-row" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '6px' }}>
               <h1 style={{ margin: 0, lineHeight: 1.2 }}>{profile.full_name || t('services.defaultUser')}</h1>
-              {isSpecialist && <span className="badge-specialist" style={{ margin: 0 }}>{t('dashboard.roleSpecialist')}</span>}
             </div>
             <p className="profile-username">@{profile.username || 'username'}</p>
 
