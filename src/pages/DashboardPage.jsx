@@ -42,6 +42,7 @@ export default function DashboardPage() {
 
   const [uploading, setUploading] = useState(false)
   const [uploadMessage, setUploadMessage] = useState('')
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   const handleAvatarUpload = async (e) => {
     const file = e.target.files?.[0]
@@ -101,9 +102,23 @@ export default function DashboardPage() {
 
   return (
     <div className="dashboard-page">
+      {/* Mobile top bar to open menu */}
+      <div className="dashboard-mobile-header">
+        <button className="dashboard-menu-btn" onClick={() => setIsSidebarOpen(true)}>
+          ☰ Меню кабинета
+        </button>
+      </div>
+
       <div className="dashboard-layout">
-        <aside className="dashboard-sidebar">
-          <div className="section-card dark-card">
+        {/* Overlay for mobile */}
+        <div 
+          className={isSidebarOpen ? 'dashboard-overlay open' : 'dashboard-overlay'} 
+          onClick={() => setIsSidebarOpen(false)}
+        />
+
+        <aside className={isSidebarOpen ? 'dashboard-sidebar open' : 'dashboard-sidebar'}>
+          <div className="section-card dark-card dashboard-sidebar-inner">
+            <button className="dashboard-close-btn" onClick={() => setIsSidebarOpen(false)}>×</button>
             <div className="profile-box">
               <div className="profile-avatar">
                 {profile?.avatar_url ? (

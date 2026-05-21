@@ -193,17 +193,7 @@ export default function LandingPage() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', paddingBottom: '80px' }}>
 
       {/* ═══════════════ HERO ═══════════════ */}
-      <section style={{
-        display: 'grid',
-        gridTemplateColumns: '1.15fr 0.85fr',
-        gap: '36px',
-        alignItems: 'center',
-        padding: '56px 48px',
-        borderRadius: '32px',
-        background: 'var(--surface)',
-        border: '1px solid var(--line)',
-        boxShadow: 'var(--shadow-sm)',
-      }}>
+      <section className="landing-hero">
         <div>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: '6px',
@@ -242,7 +232,7 @@ export default function LandingPage() {
           </p>
 
           {/* Search */}
-          <form onSubmit={handleSearchSubmit} style={{ display: 'flex', gap: '12px', marginBottom: '28px', maxWidth: '520px' }}>
+          <form className="landing-search-form" onSubmit={handleSearchSubmit}>
             <div style={{ flex: 1, position: 'relative', display: 'flex', alignItems: 'center' }}>
               <Search size={18} color="var(--text-muted)" style={{ position: 'absolute', left: '18px' }} />
               <input
@@ -274,7 +264,7 @@ export default function LandingPage() {
           </form>
 
           {/* Buttons */}
-          <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
+          <div className="landing-hero-btns">
             <Link to="/services" style={{
               height: '48px', padding: '0 24px', borderRadius: '999px',
               background: 'var(--gradient-primary)', color: '#fff',
@@ -297,7 +287,7 @@ export default function LandingPage() {
         </div>
 
         {/* Right stats */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+        <div className="landing-stats-grid">
           <div style={{
             gridColumn: '1 / -1', padding: '32px 28px', borderRadius: '24px',
             background: 'var(--gradient-primary)', color: '#fff',
@@ -334,13 +324,13 @@ export default function LandingPage() {
       <section>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '20px' }}>
           <div>
-            <h2 style={{ margin: 0, fontSize: '24px', fontWeight: 900, color: 'var(--text-color)' }}>{t('landing.categoriesTitle')}</h2>
+            <h2 className="landing-section-title" style={{ margin: 0, fontSize: '24px', fontWeight: 900, color: 'var(--text-color)' }}>{t('landing.categoriesTitle')}</h2>
           </div>
           <Link to="/services" style={{ color: 'var(--primary)', textDecoration: 'none', fontSize: '14px', fontWeight: 700 }}>
             {t('landing.categoriesAll')}
           </Link>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px' }}>
+        <div className="landing-categories-grid">
           {categoriesConfig.map(({ icon: Icon, name, color, bg }) => (
             <Link key={name} to={`/services?category=${encodeURIComponent(name)}`} style={{ textDecoration: 'none' }}>
               <div
@@ -362,7 +352,7 @@ export default function LandingPage() {
                   e.currentTarget.style.borderColor = 'var(--line)'
                 }}
               >
-                <div style={{
+                <div className="cat-icon-wrap" style={{
                   width: '52px', height: '52px', borderRadius: '16px',
                   background: bg, display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
@@ -379,33 +369,32 @@ export default function LandingPage() {
       {/* ═══════════════ PLACE ADVERTISEMENT BANNER ═══════════════ */}
       <Link to="/create" style={{ textDecoration: 'none' }}>
         <div
+          className="landing-place-ad"
           style={{
             padding: '40px 48px', borderRadius: '28px',
             background: 'var(--gradient-primary)', color: '#fff',
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            gap: '24px', flexWrap: 'wrap',
             cursor: 'pointer', transition: 'transform 0.2s, box-shadow 0.2s',
             boxShadow: 'var(--shadow-md)',
           }}
           onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = 'var(--shadow-lg)' }}
           onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'var(--shadow-md)' }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '28px' }}>
+          <div className="place-ad-inner" style={{ display: 'flex', alignItems: 'center', gap: '28px' }}>
             <div style={{ display: 'flex', gap: '0px', flexShrink: 0 }}>
-              <div style={{ fontSize: '56px', lineHeight: 1 }}>🛠️</div>
-              <div style={{ fontSize: '56px', lineHeight: 1, marginLeft: '-8px' }}>📋</div>
+              <div className="place-ad-emoji" style={{ fontSize: '56px', lineHeight: 1 }}>🛠️</div>
+              <div className="place-ad-emoji" style={{ fontSize: '56px', lineHeight: 1, marginLeft: '-8px' }}>📋</div>
             </div>
             <div>
-              <div style={{ fontSize: '24px', fontWeight: 900, marginBottom: '6px' }}>
+              <div className="place-ad-title" style={{ fontSize: '24px', fontWeight: 900, marginBottom: '6px' }}>
                 {t('landing.placeAdTitle')}
               </div>
-              <div style={{ fontSize: '14px', opacity: 0.9, lineHeight: 1.6, maxWidth: '52ch' }}>
+              <div className="place-ad-desc" style={{ fontSize: '14px', opacity: 0.9, lineHeight: 1.6, maxWidth: '52ch' }}>
                 {t('landing.placeAdDesc')}
               </div>
             </div>
           </div>
 
-          <div style={{
+          <div className="place-ad-btn" style={{
             display: 'inline-flex', alignItems: 'center', gap: '8px',
             padding: '14px 28px', borderRadius: '999px',
             background: 'rgba(255,255,255,0.2)', border: '1px solid rgba(255,255,255,0.35)',
@@ -417,14 +406,14 @@ export default function LandingPage() {
       </Link>
 
       {/* ═══════════════ HOW IT WORKS ═══════════════ */}
-      <section style={{
+      <section className="landing-how-section" style={{
         padding: '48px 40px', borderRadius: '28px',
         background: 'var(--surface)', border: '1px solid var(--line)', boxShadow: 'var(--shadow-sm)',
       }}>
         <h2 style={{ margin: '0 0 36px', fontSize: '24px', fontWeight: 900, textAlign: 'center', color: 'var(--text-color)' }}>
           {t('landing.howTitle')}
         </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+        <div className="landing-how-grid">
           {howItWorks.map((step, i) => (
             <div key={i} style={{
               padding: '28px', borderRadius: '20px',
@@ -461,8 +450,8 @@ export default function LandingPage() {
 
       {/* ═══════════════ BENEFITS ═══════════════ */}
       <section>
-        <h2 style={{ margin: '0 0 20px', fontSize: '24px', fontWeight: 900, color: 'var(--text-color)' }}>{t('landing.benefitsTitle')}</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
+        <h2 className="landing-section-title" style={{ margin: '0 0 20px', fontSize: '24px', fontWeight: 900, color: 'var(--text-color)' }}>{t('landing.benefitsTitle')}</h2>
+        <div className="landing-benefits-grid">
           {benefits.map((b, i) => (
             <Link key={i} to={b.link} style={{ textDecoration: 'none' }}>
               <div
@@ -504,11 +493,10 @@ export default function LandingPage() {
 
       {/* ═══════════════ BOTTOM CTA ═══════════════ */}
       {!user && (
-        <section style={{
+        <section className="landing-cta-section" style={{
           padding: '52px 48px', borderRadius: '28px',
           background: 'var(--gradient-primary)', color: '#fff',
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          gap: '24px', flexWrap: 'wrap', boxShadow: 'var(--shadow-lg)',
+          boxShadow: 'var(--shadow-lg)',
         }}>
           <div>
             <h2 style={{ margin: '0 0 8px', fontSize: '30px', fontWeight: 900 }}>{t('landing.ctaTitle')}</h2>
@@ -516,7 +504,7 @@ export default function LandingPage() {
               {t('landing.ctaDesc')}
             </p>
           </div>
-          <div style={{ display: 'flex', gap: '14px', flexShrink: 0 }}>
+          <div className="landing-cta-btns" style={{ display: 'flex', gap: '14px', flexShrink: 0 }}>
             <Link to="/register" style={{
               height: '50px', padding: '0 28px', borderRadius: '999px',
               background: '#fff', color: 'var(--primary)', textDecoration: 'none',

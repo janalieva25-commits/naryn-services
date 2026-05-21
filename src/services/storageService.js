@@ -39,7 +39,7 @@ export async function uploadImages(files, userId) {
 export async function uploadDocuments(files, userId) {
   if (!files || files.length === 0) return []
 
-  const uploadedPaths = []
+  const uploadedUrls = []
 
   for (const file of files) {
     const filePath = buildFilePath(userId, file)
@@ -53,10 +53,14 @@ export async function uploadDocuments(files, userId) {
 
     if (error) throw error
 
-    uploadedPaths.push(data.path)
+    const { data: publicUrlData } = supabase.storage
+      .from('documents')
+      .getPublicUrl(data.path)
+
+    uploadedUrls.push(publicUrlData.publicUrl)
   }
 
-  return uploadedPaths
+  return uploadedUrls
 }
 
 export async function createSignedDocumentUrl(path) {

@@ -235,128 +235,78 @@ export default function Header() {
         </div>
       </header>
 
+      {/* Overlay backdrop */}
       <div
         onClick={() => setNotificationsOpen(false)}
-        style={{
-          position: 'fixed',
-          inset: 0,
-          background: notificationsOpen ? 'rgba(15, 23, 42, 0.35)' : 'rgba(15, 23, 42, 0)',
-          zIndex: notificationsOpen ? 9999 : -1,
-          opacity: notificationsOpen ? 1 : 0,
-          pointerEvents: notificationsOpen ? 'auto' : 'none',
-          transition: 'opacity 0.28s ease, background 0.28s ease',
-          display: 'flex',
-          justifyContent: 'flex-end',
-        }}
+        className={notificationsOpen ? 'notif-overlay notif-overlay--open' : 'notif-overlay'}
       >
+        {/* Panel — bottom sheet on mobile, right drawer on desktop */}
         <div
           onClick={(e) => e.stopPropagation()}
-          style={{
-            width: '100%',
-            maxWidth: '430px',
-            height: '100vh',
-            background: 'var(--surface)',
-            borderLeft: '1px solid var(--line)',
-            boxShadow: 'var(--shadow)',
-            color: 'var(--text)',
-            display: 'flex',
-            flexDirection: 'column',
-            transform: notificationsOpen ? 'translateX(0)' : 'translateX(100%)',
-            transition: 'transform 0.32s cubic-bezier(0.22, 1, 0.36, 1)',
-            willChange: 'transform',
-          }}
+          className={notificationsOpen ? 'notif-panel notif-panel--open' : 'notif-panel'}
         >
-          <div
-            style={{
-              padding: '20px 20px 16px',
-              borderBottom: '1px solid var(--line)',
-              display: 'flex',
-              alignItems: 'flex-start',
-              justifyContent: 'space-between',
-              gap: '12px',
-            }}
-          >
+          {/* Drag handle (mobile only) */}
+          <div className="notif-drag-handle" />
+
+          {/* Header */}
+          <div style={{
+            padding: '16px 20px 14px',
+            borderBottom: '1px solid var(--line)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '12px',
+            flexShrink: 0,
+          }}>
             <div>
-              <h3 style={{ margin: 0, fontSize: '22px', fontWeight: 800 }}>
+              <h3 style={{ margin: 0, fontSize: '20px', fontWeight: 800 }}>
                 {t('nav.notifications')}
               </h3>
-              <p style={{ margin: '6px 0 0', fontSize: '14px', opacity: 0.65 }}>
-                {t('header.newNotifications')}
+              <p style={{ margin: '4px 0 0', fontSize: '13px', opacity: 0.6 }}>
+                {t('header.unread')}: {unreadCount}
               </p>
             </div>
 
-            <button
-              type="button"
-              onClick={() => setNotificationsOpen(false)}
-              style={{
-                border: 'none',
-                borderRadius: '12px',
-                width: '40px',
-                height: '40px',
-                background: 'var(--surface-soft)',
-                color: 'var(--text)',
-                cursor: 'pointer',
-                fontSize: '18px',
-                fontWeight: 700,
-                flexShrink: 0,
-              }}
-            >
-              ×
-            </button>
-          </div>
-
-          <div
-            style={{
-              padding: '14px 20px',
-              borderBottom: '1px solid var(--line)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '12px',
-            }}
-          >
-            <div style={{ fontSize: '14px', fontWeight: 600 }}>
-              {t('header.unread')}: {unreadCount}
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+              <button
+                type="button"
+                onClick={handleMarkAllAsRead}
+                style={{
+                  border: 'none', borderRadius: '12px', padding: '8px 12px',
+                  background: 'var(--surface-soft)', color: 'var(--text)',
+                  cursor: 'pointer', fontWeight: 600, fontSize: '12px',
+                }}
+              >
+                {t('header.markAllRead')}
+              </button>
+              <button
+                type="button"
+                onClick={() => setNotificationsOpen(false)}
+                style={{
+                  border: 'none', borderRadius: '12px',
+                  width: '36px', height: '36px',
+                  background: 'var(--surface-soft)', color: 'var(--text)',
+                  cursor: 'pointer', fontSize: '18px', fontWeight: 700, flexShrink: 0,
+                }}
+              >
+                ×
+              </button>
             </div>
-
-            <button
-              type="button"
-              onClick={handleMarkAllAsRead}
-              style={{
-                border: 'none',
-                borderRadius: '12px',
-                padding: '10px 14px',
-                background: 'var(--surface-soft)',
-                color: 'var(--text)',
-                cursor: 'pointer',
-                fontWeight: 600,
-              }}
-            >
-              {t('header.markAllRead')}
-            </button>
           </div>
 
-          <div
-            style={{
-              flex: 1,
-              overflowY: 'auto',
-              padding: '16px 20px 24px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px',
-            }}
-          >
+          {/* Notifications list */}
+          <div style={{
+            flex: 1, overflowY: 'auto',
+            padding: '14px 16px 24px',
+            display: 'flex', flexDirection: 'column', gap: '10px',
+          }}>
             {loadingNotifications ? (
               <p style={{ margin: 0 }}>{t('common.loading')}</p>
             ) : notifications.length === 0 ? (
-              <div
-                style={{
-                  padding: '18px',
-                  borderRadius: '18px',
-                  background: 'var(--surface-soft)',
-                  border: '1px solid var(--line)',
-                }}
-              >
+              <div style={{
+                padding: '18px', borderRadius: '18px',
+                background: 'var(--surface-soft)', border: '1px solid var(--line)',
+              }}>
                 <p style={{ margin: 0, fontWeight: 600 }}>{t('header.noNotifications')}</p>
               </div>
             ) : (
@@ -366,35 +316,18 @@ export default function Header() {
                   type="button"
                   onClick={() => handleNotificationClick(notification)}
                   style={{
-                    width: '100%',
-                    textAlign: 'left',
-                    padding: '16px',
-                    border: '1px solid var(--line)',
-                    borderRadius: '18px',
+                    width: '100%', textAlign: 'left', padding: '14px',
+                    border: '1px solid var(--line)', borderRadius: '16px',
                     background: notification.is_read ? 'var(--surface)' : 'rgba(99, 102, 241, 0.08)',
-                    color: 'var(--text)',
-                    cursor: 'pointer',
-                    transition: 'transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-2px)'
-                    e.currentTarget.style.boxShadow = 'var(--shadow)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)'
-                    e.currentTarget.style.boxShadow = 'none'
+                    color: 'var(--text)', cursor: 'pointer',
+                    transition: 'transform 0.18s ease, box-shadow 0.18s ease',
                   }}
                 >
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      gap: '12px',
-                      marginBottom: '8px',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <strong style={{ fontSize: '16px', color: 'var(--text)' }}>
+                  <div style={{
+                    display: 'flex', justifyContent: 'space-between',
+                    gap: '12px', marginBottom: '6px', alignItems: 'center',
+                  }}>
+                    <strong style={{ fontSize: '14px', color: 'var(--text)' }}>
                       {notification.type === 'message' && '💬 '}
                       {notification.type === 'review' && '⭐ '}
                       {notification.type === 'message'
@@ -404,27 +337,19 @@ export default function Header() {
                         : t('nav.notifications')}
                     </strong>
                     {!notification.is_read && (
-                      <span
-                        style={{
-                          fontSize: '12px',
-                          padding: '4px 8px',
-                          borderRadius: '999px',
-                          background: 'rgba(99, 102, 241, 0.15)',
-                          color: 'var(--primary)',
-                          fontWeight: 700,
-                          flexShrink: 0,
-                        }}
-                      >
+                      <span style={{
+                        fontSize: '11px', padding: '3px 8px', borderRadius: '999px',
+                        background: 'rgba(99, 102, 241, 0.15)', color: 'var(--primary)',
+                        fontWeight: 700, flexShrink: 0,
+                      }}>
                         {t('header.newBadge')}
                       </span>
                     )}
                   </div>
-
-                  <div style={{ fontSize: '14px', lineHeight: 1.5, marginBottom: '8px', color: 'var(--muted)' }}>
+                  <div style={{ fontSize: '13px', lineHeight: 1.5, marginBottom: '6px', color: 'var(--muted)' }}>
                     {notification.content}
                   </div>
-
-                  <div style={{ fontSize: '12px', opacity: 0.6, color: 'var(--muted)' }}>
+                  <div style={{ fontSize: '11px', opacity: 0.6, color: 'var(--muted)' }}>
                     {new Date(notification.created_at).toLocaleString('ru-RU')}
                   </div>
                 </button>

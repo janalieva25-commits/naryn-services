@@ -36,9 +36,12 @@ export default function MessagesPage() {
   const [sending, setSending] = useState(false)
 
   const [showEmoji, setShowEmoji] = useState(false)
+  const [showAttachMenu, setShowAttachMenu] = useState(false)
   const [attachedImages, setAttachedImages] = useState([])
   const [attachedDocs, setAttachedDocs] = useState([])
   const [uploading, setUploading] = useState(false)
+  const [uploadError, setUploadError] = useState('')
+  const [fullscreenImage, setFullscreenImage] = useState(null)
   const imageInputRef = useRef(null)
   const docInputRef = useRef(null)
 
@@ -71,7 +74,10 @@ export default function MessagesPage() {
   }, [])
 
   useEffect(() => {
-    const close = (e) => { if (!e.target.closest('.emoji-zone')) setShowEmoji(false) }
+    const close = (e) => { 
+      if (!e.target.closest('.emoji-zone')) setShowEmoji(false) 
+      if (!e.target.closest('.attach-zone')) setShowAttachMenu(false)
+    }
     document.addEventListener('click', close)
     return () => document.removeEventListener('click', close)
   }, [])
@@ -167,13 +173,30 @@ export default function MessagesPage() {
     setConvMenuOpenId(null)
   }
 
-  const handleImageAttach = (e) => { setAttachedImages(prev => [...prev, ...Array.from(e.target.files || [])]); e.target.value = '' }
-  const handleDocAttach = (e) => { setAttachedDocs(prev => [...prev, ...Array.from(e.target.files || [])]); e.target.value = '' }
+  const handleImageAttach = (e) => { 
+    setShowAttachMenu(false); 
+    setUploadError(''); 
+    const files = e.target.files ? Array.from(e.target.files).filter(f => f && f.name) : [];
+    if (files.length > 0) {
+      setAttachedImages(prev => [...prev, ...files]); 
+    }
+    e.target.value = ''; 
+  }
+  const handleDocAttach = (e) => { 
+    setShowAttachMenu(false); 
+    setUploadError(''); 
+    const files = e.target.files ? Array.from(e.target.files).filter(f => f && f.name) : [];
+    if (files.length > 0) {
+      setAttachedDocs(prev => [...prev, ...files]); 
+    }
+    e.target.value = ''; 
+  }
   const removeAttachedImage = (idx) => setAttachedImages(prev => prev.filter((_, i) => i !== idx))
   const removeAttachedDoc = (idx) => setAttachedDocs(prev => prev.filter((_, i) => i !== idx))
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setUploadError('')
     if (!user?.id || !activeConversationId) return
     if (!text.trim() && attachedImages.length === 0 && attachedDocs.length === 0) return
     setSending(true)
@@ -200,7 +223,11 @@ export default function MessagesPage() {
       }
       setText(''); setAttachedImages([]); setAttachedDocs([])
       await markMessagesAsRead(activeConversationId, user.id)
-    } catch (e) { alert(e.message) } finally { setSending(false); setUploading(false) }
+    } catch (e) { 
+      setUploadError(e.message || 'Ошибка при отправке')
+    } finally { 
+      setSending(false); setUploading(false) 
+    }
   }
 
   const startEdit = (msg) => { setEditingMessageId(msg.id); setEditText(msg.body); setMenuOpenId(null); setTimeout(() => textareaRef.current?.focus(), 50) }
@@ -253,10 +280,10 @@ export default function MessagesPage() {
     : <span style={{ fontSize: size * 0.4 }}>{initials(person?.full_name)}</span>
 
   return (
-    <div style={{ height: 'calc(100vh - 120px)', display: 'flex', gap: '0', background: 'var(--surface)', borderRadius: '20px', overflow: 'hidden', boxShadow: 'var(--shadow)', border: '1px solid var(--line)', minHeight: '600px' }}>
+    <div className="messages-layout-container">
 
       {/* ─── LEFT: Conversation List ─── */}
-      <div style={{ width: '300px', flexShrink: 0, display: 'flex', flexDirection: 'column', borderRight: '1px solid var(--line)' }}>
+      <div className={`messages-sidebar ${activeConversation ? 'hidden-on-mobile' : ''}`}>
         {/* Header */}
         <div style={{ padding: '20px 16px 14px', borderBottom: '1px solid var(--line)', flexShrink: 0 }}>
           <h2 style={{ margin: 0, fontSize: '18px', fontWeight: 700 }}>{t('nav.messages')}</h2>
@@ -346,7 +373,7 @@ export default function MessagesPage() {
       </div>
 
       {/* ─── RIGHT: Chat Area ─── */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: 'var(--surface-soft)' }}>
+      <div className={`messages-chat-area ${!activeConversation ? 'hidden-on-mobile' : ''}`}>
 
         {!activeConversation ? (
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'var(--muted)', gap: '12px' }}>
@@ -359,6 +386,13 @@ export default function MessagesPage() {
             {/* ── Chat Header ── */}
             <div style={{ padding: '12px 20px', borderBottom: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'var(--surface)', flexShrink: 0, gap: '12px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <button 
+                  className="messages-back-btn" 
+                  onClick={() => setActiveConversation(null)}
+                  title="Back"
+                >
+                  ←
+                </button>
                 <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--gradient-primary)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, overflow: 'hidden', flexShrink: 0 }}>
                   {avatarEl(otherUser, 40)}
                 </div>
@@ -448,9 +482,13 @@ export default function MessagesPage() {
                               {msg.image_urls?.length > 0 && (
                                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: msg.body ? '8px' : 0 }}>
                                   {msg.image_urls.map((url, i) => (
-                                    <a key={i} href={url} target="_blank" rel="noreferrer">
+                                    <div 
+                                      key={i} 
+                                      onClick={(e) => { e.stopPropagation(); setFullscreenImage(url); }}
+                                      style={{ cursor: 'pointer' }}
+                                    >
                                       <img src={url} alt="" style={{ width: '160px', height: '120px', objectFit: 'cover', borderRadius: '10px', display: 'block' }} />
-                                    </a>
+                                    </div>
                                   ))}
                                 </div>
                               )}
@@ -489,12 +527,20 @@ export default function MessagesPage() {
               {/* Attached files preview */}
               {(attachedImages.length > 0 || attachedDocs.length > 0) && (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '8px' }}>
-                  {attachedImages.map((file, i) => (
-                    <div key={i} style={{ position: 'relative' }}>
-                      <img src={URL.createObjectURL(file)} alt="" style={{ width: '56px', height: '56px', objectFit: 'cover', borderRadius: '8px', display: 'block' }} />
-                      <button onClick={() => removeAttachedImage(i)} style={{ position: 'absolute', top: '-5px', right: '-5px', width: '16px', height: '16px', borderRadius: '50%', background: '#e74c3c', color: '#fff', border: 'none', cursor: 'pointer', fontSize: '10px', lineHeight: '16px', textAlign: 'center', padding: 0 }}>×</button>
-                    </div>
-                  ))}
+                  {attachedImages.map((file, i) => {
+                    let src = '';
+                    try { src = file ? URL.createObjectURL(file) : ''; } catch(e) { console.error('Error creating object URL:', e); }
+                    return (
+                      <div key={i} style={{ position: 'relative' }}>
+                        {src ? (
+                          <img src={src} alt="" style={{ width: '56px', height: '56px', objectFit: 'cover', borderRadius: '8px', display: 'block' }} />
+                        ) : (
+                          <div style={{ width: '56px', height: '56px', background: '#ccc', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px' }}>Error</div>
+                        )}
+                        <button onClick={() => removeAttachedImage(i)} style={{ position: 'absolute', top: '-5px', right: '-5px', width: '16px', height: '16px', borderRadius: '50%', background: '#e74c3c', color: '#fff', border: 'none', cursor: 'pointer', fontSize: '10px', lineHeight: '16px', textAlign: 'center', padding: 0 }}>×</button>
+                      </div>
+                    )
+                  })}
                   {attachedDocs.map((file, i) => (
                     <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'var(--surface-soft)', borderRadius: '8px', padding: '6px 10px', fontSize: '12px', maxWidth: '180px' }}>
                       <span>📄</span>
@@ -502,6 +548,14 @@ export default function MessagesPage() {
                       <button onClick={() => removeAttachedDoc(i)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontSize: '14px', flexShrink: 0, padding: 0 }}>×</button>
                     </div>
                   ))}
+                </div>
+              )}
+
+              {/* Error message */}
+              {uploadError && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 12px', background: '#fdf0f0', border: '1px solid #f5c6c6', borderRadius: '8px', marginBottom: '8px', fontSize: '13px', color: '#e74c3c' }}>
+                  <span>⚠️</span> {uploadError}
+                  <button onClick={() => setUploadError('')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--muted)', fontSize: '16px', marginLeft: 'auto', padding: 0 }}>×</button>
                 </div>
               )}
 
@@ -516,17 +570,48 @@ export default function MessagesPage() {
               {/* Input row */}
               <form onSubmit={editingMessageId ? handleEditSubmit : handleSubmit} style={{ display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
 
-                <input ref={imageInputRef} type="file" accept="image/*" multiple hidden onChange={handleImageAttach} />
-                <input ref={docInputRef} type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.zip,.rar" multiple hidden onChange={handleDocAttach} />
+                <input id="image-input" ref={imageInputRef} type="file" accept="image/*" multiple style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', borderWidth: 0 }} onChange={handleImageAttach} />
+                <input id="doc-input" ref={docInputRef} type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.zip,.rar" multiple style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', borderWidth: 0 }} onChange={handleDocAttach} />
 
-                {/* Action buttons */}
-                <div style={{ display: 'flex', gap: '2px', alignItems: 'flex-end', flexShrink: 0 }}>
+                {/* Action buttons (Attachment + Emoji) */}
+                <div style={{ display: 'flex', gap: '4px', alignItems: 'flex-end', flexShrink: 0 }}>
                   {!editingMessageId && (
-                    <>
-                      <button type="button" onClick={() => imageInputRef.current?.click()} title={t('messages.photoTooltip')} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', padding: '8px 6px', color: 'var(--muted)', lineHeight: 1 }}>📷</button>
-                      <button type="button" onClick={() => docInputRef.current?.click()} title={t('messages.documentTooltip')} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', padding: '8px 6px', color: 'var(--muted)', lineHeight: 1 }}>📎</button>
-                    </>
+                    <div className="attach-zone" style={{ position: 'relative' }}>
+                      <button type="button" onClick={(e) => { e.stopPropagation(); setShowAttachMenu(v => !v) }} title={t('messages.documentTooltip')} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '24px', padding: '6px 8px', color: 'var(--muted)', lineHeight: 1 }}>
+                        +
+                      </button>
+                      
+                      {showAttachMenu && (
+                        <div style={{ position: 'absolute', bottom: '48px', left: '10px', zIndex: 200, background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: '12px', boxShadow: 'var(--shadow)', padding: '8px', minWidth: '180px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                          <label 
+                            htmlFor="image-input"
+                            style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text)', fontSize: '14px', borderRadius: '8px', textAlign: 'left' }}
+                            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--surface-soft)'}
+                            onMouseLeave={(e) => e.currentTarget.style.background = 'none'}
+                          >
+                            <span style={{ fontSize: '18px', color: '#3498db' }}>📷</span> {t('messages.photoTooltip') || 'Фото и видео'}
+                          </label>
+                          <label 
+                            htmlFor="doc-input"
+                            style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text)', fontSize: '14px', borderRadius: '8px', textAlign: 'left' }}
+                            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--surface-soft)'}
+                            onMouseLeave={(e) => e.currentTarget.style.background = 'none'}
+                          >
+                            <span style={{ fontSize: '18px', color: '#9b59b6' }}>📄</span> {t('messages.documentTooltip') || 'Документ'}
+                          </label>
+                        </div>
+                      )}
+                    </div>
                   )}
+                  
+                  <div className="emoji-zone" style={{ position: 'relative' }}>
+                    <button type="button" onClick={(e) => { e.stopPropagation(); setShowEmoji(v => !v) }} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '22px', padding: '6px 8px', color: 'var(--muted)', lineHeight: 1 }}>😊</button>
+                    {showEmoji && (
+                      <div style={{ position: 'absolute', bottom: '48px', left: 0, zIndex: 200 }}>
+                        <EmojiPicker onEmojiClick={handleEmojiClick} theme="auto" height={350} width={300} previewConfig={{ showPreview: false }} searchPlaceholder={t('common.search')} />
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 {/* Textarea */}
@@ -541,44 +626,35 @@ export default function MessagesPage() {
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && !e.shiftKey) {
+                       // On mobile, Enter should probably create a new line if not Shift+Enter, or just send.
                       e.preventDefault()
                       editingMessageId ? handleEditSubmit(e) : handleSubmit(e)
                     }
                   }}
                   rows={1}
                   style={{
-                    flex: 1, resize: 'none', border: '1px solid var(--line)',
-                    borderRadius: '22px', padding: '10px 16px',
+                    flex: 1, resize: 'none', border: 'none',
+                    borderRadius: '20px', padding: '10px 14px',
                     background: 'var(--surface-soft)', color: 'var(--text)',
-                    fontSize: '14px', lineHeight: '1.5', outline: 'none',
-                    overflow: 'hidden', minHeight: '42px', maxHeight: '120px',
-                    boxSizing: 'border-box', transition: 'border-color 0.2s',
-                    fontFamily: 'inherit',
+                    fontSize: '15px', lineHeight: '1.4', outline: 'none',
+                    overflow: 'hidden', minHeight: '40px', maxHeight: '120px',
+                    boxSizing: 'border-box', fontFamily: 'inherit',
                   }}
                 />
-
-                {/* Emoji button */}
-                <div className="emoji-zone" style={{ position: 'relative', flexShrink: 0 }}>
-                  <button type="button" onClick={(e) => { e.stopPropagation(); setShowEmoji(v => !v) }} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '22px', padding: '8px 6px', color: 'var(--muted)', lineHeight: 1 }}>😊</button>
-                  {showEmoji && (
-                    <div style={{ position: 'absolute', bottom: '48px', right: 0, zIndex: 200 }}>
-                      <EmojiPicker onEmojiClick={handleEmojiClick} theme="auto" height={350} width={300} previewConfig={{ showPreview: false }} searchPlaceholder={t('common.search')} />
-                    </div>
-                  )}
-                </div>
 
                 {/* Send button */}
                 <button
                   type="submit"
-                  disabled={sending || uploading}
+                  disabled={sending || uploading || (!text.trim() && attachedImages.length === 0 && attachedDocs.length === 0)}
                   style={{
-                    width: '42px', height: '42px', borderRadius: '50%', border: 'none',
-                    background: 'var(--gradient-primary)', color: '#fff', cursor: 'pointer',
+                    width: '40px', height: '40px', borderRadius: '50%', border: 'none',
+                    background: (text.trim() || attachedImages.length > 0 || attachedDocs.length > 0) ? 'var(--primary)' : 'var(--surface-soft)', 
+                    color: (text.trim() || attachedImages.length > 0 || attachedDocs.length > 0) ? '#fff' : 'var(--muted)',
+                    cursor: 'pointer',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: '18px', flexShrink: 0,
                     opacity: sending || uploading ? 0.6 : 1,
-                    boxShadow: '0 2px 8px rgba(99,102,241,0.35)',
-                    transition: 'opacity 0.2s, transform 0.1s',
+                    transition: 'all 0.2s ease',
                   }}
                 >
                   {uploading ? '⏳' : editingMessageId ? '✓' : '➤'}
@@ -588,6 +664,21 @@ export default function MessagesPage() {
           </>
         )}
       </div>
+      {/* Fullscreen Image Modal */}
+      {fullscreenImage && (
+        <div 
+          onClick={() => setFullscreenImage(null)}
+          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.9)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        >
+          <img src={fullscreenImage} alt="" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+          <button 
+            onClick={() => setFullscreenImage(null)}
+            style={{ position: 'absolute', top: '20px', right: '20px', background: 'rgba(255,255,255,0.2)', color: '#fff', border: 'none', borderRadius: '50%', width: '40px', height: '40px', fontSize: '24px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            ×
+          </button>
+        </div>
+      )}
     </div>
   )
 }

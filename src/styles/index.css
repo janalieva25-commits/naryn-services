@@ -6764,10 +6764,6 @@ select {
     grid-template-columns: 1fr !important;
   }
 
-  .services-page > .section-card:first-child,
-  .orders-page > .section-card:first-child {
-    display: none;
-  }
 
   /* Filter bar visible on mobile */
   .services-filters {
@@ -7219,5 +7215,854 @@ select {
   .market-image-wrap,
   .order-card-image-wrap {
     height: 130px !important;
+  }
+}
+
+
+/* ============================================================
+   LANDING PAGE MOBILE — override inline styles via classes
+   ============================================================ */
+
+.landing-hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 36px;
+  align-items: center;
+  padding: 56px 48px;
+  border-radius: 32px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.landing-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.landing-how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.landing-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.landing-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.landing-cta-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.landing-hero-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.landing-place-ad {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.landing-search-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+  max-width: 520px;
+}
+
+@media (max-width: 768px) {
+  /* Hero → single column, compact */
+  .landing-hero {
+    grid-template-columns: 1fr !important;
+    padding: 20px 16px !important;
+    gap: 20px !important;
+    border-radius: 20px !important;
+  }
+
+  /* Stats move below text, horizontal row */
+  .landing-stats-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Big stats card smaller */
+  .landing-stats-main-card {
+    padding: 18px 14px !important;
+    border-radius: 16px !important;
+  }
+
+  .landing-stats-main-card .stat-num {
+    font-size: 28px !important;
+  }
+
+  .landing-stats-sub-card {
+    padding: 14px 12px !important;
+    border-radius: 14px !important;
+  }
+
+  .landing-stats-sub-card .stat-num {
+    font-size: 22px !important;
+  }
+
+  /* Hero text */
+  .landing-hero h1 {
+    font-size: clamp(22px, 6vw, 30px) !important;
+    margin-bottom: 10px !important;
+  }
+
+  .landing-hero p {
+    font-size: 13px !important;
+    margin-bottom: 16px !important;
+    max-width: 100% !important;
+  }
+
+  /* Search form stacks */
+  .landing-search-form {
+    flex-direction: column !important;
+    max-width: 100% !important;
+    gap: 8px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .landing-search-form input {
+    height: 44px !important;
+    font-size: 13px !important;
+  }
+
+  .landing-search-form button {
+    height: 44px !important;
+    font-size: 13px !important;
+    width: 100% !important;
+  }
+
+  /* Action buttons */
+  .landing-hero-btns {
+    gap: 8px !important;
+  }
+
+  .landing-hero-btns a {
+    height: 40px !important;
+    padding: 0 16px !important;
+    font-size: 13px !important;
+  }
+
+  /* Categories: 3 columns on mobile */
+  .landing-categories-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .landing-categories-grid > a > div {
+    padding: 14px 8px !important;
+    border-radius: 14px !important;
+    gap: 8px !important;
+  }
+
+  .landing-categories-grid .cat-icon-wrap {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
+  }
+
+  .landing-categories-grid span {
+    font-size: 11px !important;
+  }
+
+  /* How it works: 1 column */
+  .landing-how-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .landing-how-grid > div {
+    padding: 16px !important;
+    border-radius: 14px !important;
+    gap: 10px !important;
+  }
+
+  /* Benefits: 1 column */
+  .landing-benefits-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .landing-benefits-grid > a > div {
+    padding: 14px !important;
+    border-radius: 14px !important;
+    gap: 12px !important;
+  }
+
+  /* Place ad banner */
+  .landing-place-ad {
+    flex-direction: column !important;
+    padding: 20px 16px !important;
+    border-radius: 18px !important;
+    gap: 14px !important;
+    align-items: flex-start !important;
+  }
+
+  .landing-place-ad .place-ad-inner {
+    gap: 14px !important;
+  }
+
+  .landing-place-ad .place-ad-title {
+    font-size: 16px !important;
+  }
+
+  .landing-place-ad .place-ad-desc {
+    font-size: 12px !important;
+  }
+
+  .landing-place-ad .place-ad-emoji {
+    font-size: 36px !important;
+  }
+
+  .landing-place-ad .place-ad-btn {
+    padding: 10px 20px !important;
+    font-size: 13px !important;
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* CTA section */
+  .landing-cta-section {
+    flex-direction: column !important;
+    padding: 24px 16px !important;
+    text-align: center !important;
+    border-radius: 18px !important;
+  }
+
+  .landing-cta-section h2 {
+    font-size: 20px !important;
+  }
+
+  .landing-cta-section p {
+    font-size: 13px !important;
+  }
+
+  .landing-cta-btns {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+
+  .landing-cta-btns a {
+    width: 100% !important;
+    justify-content: center !important;
+    height: 44px !important;
+    font-size: 14px !important;
+  }
+
+  /* Section titles */
+  .landing-section-title {
+    font-size: 18px !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* How it works section padding */
+  .landing-how-section {
+    padding: 20px 16px !important;
+    border-radius: 18px !important;
+  }
+
+  .landing-how-section h2 {
+    font-size: 18px !important;
+    margin-bottom: 16px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  /* Very small: 2 columns for categories */
+  .landing-categories-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+
+/* ============================================================
+   NOTIFICATION PANEL — right drawer (desktop) / bottom sheet (mobile)
+   ============================================================ */
+
+/* Overlay backdrop */
+.notif-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0);
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease, background 0.28s ease;
+  /* Desktop: align panel to the right */
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
+.notif-overlay--open {
+  background: rgba(15, 23, 42, 0.4);
+  z-index: 9999;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Panel — desktop: right side drawer */
+.notif-panel {
+  width: 100%;
+  max-width: 420px;
+  height: 100vh;
+  background: var(--surface);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-left: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  overflow: hidden;
+}
+
+.notif-panel--open {
+  transform: translateX(0);
+}
+
+/* Drag handle — hidden on desktop */
+.notif-drag-handle {
+  display: none;
+}
+
+/* ====== MOBILE: bottom sheet ====== */
+@media (max-width: 768px) {
+  /* Overlay: align panel to bottom */
+  .notif-overlay {
+    justify-content: stretch;
+    align-items: flex-end;
+    flex-direction: column;
+  }
+
+  /* Panel becomes a bottom sheet */
+  .notif-panel {
+    width: 100%;
+    max-width: 100%;
+    height: 80vh;
+    max-height: 85vh;
+    border-left: none;
+    border-top: 1px solid var(--line);
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -8px 40px rgba(15, 23, 42, 0.2);
+    /* Slide up from bottom */
+    transform: translateY(100%);
+    transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .notif-panel--open {
+    transform: translateY(0);
+  }
+
+  /* Drag handle visible on mobile */
+  .notif-drag-handle {
+    display: block;
+    width: 40px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--line);
+    margin: 12px auto 4px;
+    flex-shrink: 0;
+  }
+}
+
+
+/* ============================================================
+   SERVICES & ORDERS MOBILE — cards + filters + detail page
+   ============================================================ */
+
+/* ── FILTERS BAR on mobile ── */
+@media (max-width: 768px) {
+
+  /* The filter block becomes visible and compact */
+  .services-filters {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  /* Search input spans full width */
+  .services-filters input[type="text"],
+  .services-filters input[type="search"] {
+    grid-column: 1 / -1 !important;
+    height: 42px !important;
+    font-size: 13px !important;
+    padding: 0 14px !important;
+    border-radius: 12px !important;
+  }
+
+  /* Dropdowns and price input half-width */
+  .services-filters select,
+  .services-filters input[type="number"] {
+    height: 40px !important;
+    font-size: 12px !important;
+    padding: 0 10px !important;
+    border-radius: 12px !important;
+  }
+
+  /* ── CARDS GRID — compact square cards ── */
+  /* Override the inline style auto-fill grid */
+  .my-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Card itself */
+  .market-card {
+    border-radius: 14px !important;
+    overflow: hidden !important;
+  }
+
+  /* Image area: square ratio */
+  .market-image-wrap {
+    aspect-ratio: 1 / 1 !important;
+    height: unset !important;
+    min-height: unset !important;
+  }
+
+  /* Card body compact */
+  .market-body {
+    padding: 8px 8px 6px !important;
+    gap: 3px !important;
+  }
+
+  .market-body h3 {
+    font-size: 12px !important;
+    margin-bottom: 4px !important;
+    -webkit-line-clamp: 2 !important;
+    min-height: unset !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Hide long description on mobile cards */
+  .market-body > p {
+    display: none !important;
+  }
+
+  /* Price & district in one line */
+  .market-meta {
+    flex-direction: column !important;
+    gap: 2px !important;
+  }
+
+  .market-meta-left {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1px !important;
+  }
+
+  .market-meta-left strong {
+    font-size: 12px !important;
+    color: var(--primary) !important;
+    font-weight: 800 !important;
+  }
+
+  .market-meta-left span {
+    font-size: 10px !important;
+    opacity: 0.7 !important;
+  }
+
+  /* Hide author on small cards */
+  .market-meta-right {
+    display: none !important;
+  }
+
+  /* Card footer button */
+  .market-card-footer {
+    padding: 0 6px 6px !important;
+  }
+
+  .market-card-footer a {
+    padding: 7px 10px !important;
+    font-size: 11px !important;
+    border-radius: 999px !important;
+  }
+
+  /* Category badge */
+  .market-category-badge {
+    font-size: 9px !important;
+    padding: 3px 6px !important;
+  }
+
+  /* ── DETAIL PAGE — hero layout on mobile ── */
+
+  /* Stack: image thumbnail top-right + text beside it */
+  .detail-hero {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* Cover becomes a small thumbnail in top-right corner */
+  .detail-cover {
+    min-height: unset !important;
+    height: 90px !important;
+    width: 110px !important;
+    float: right !important;
+    margin: 0 0 8px 12px !important;
+    border-radius: 14px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .detail-cover-placeholder {
+    min-height: unset !important;
+    font-size: 18px !important;
+  }
+
+  /* Summary fills the rest */
+  .detail-summary {
+    gap: 10px !important;
+  }
+
+  .detail-summary h1 {
+    font-size: 18px !important;
+    line-height: 1.25 !important;
+  }
+
+  /* Hide long description in hero (it's repeated in description section) */
+  .detail-lead {
+    font-size: 12px !important;
+    -webkit-line-clamp: 2 !important;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    max-width: 100% !important;
+  }
+
+  /* Meta grid — 3 cols that fit */
+  .detail-meta-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    margin-top: 6px !important;
+  }
+
+  .detail-meta-box {
+    padding: 10px !important;
+    border-radius: 12px !important;
+  }
+
+  .detail-meta-box span {
+    font-size: 10px !important;
+    margin-bottom: 3px !important;
+  }
+
+  .detail-meta-box strong {
+    font-size: 12px !important;
+  }
+
+  .detail-badge {
+    font-size: 10px !important;
+    padding: 4px 10px !important;
+  }
+
+  /* Detail photo gallery — smaller thumbnails */
+  .detail-images-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .detail-gallery-image {
+    height: 90px !important;
+    border-radius: 12px !important;
+  }
+
+  /* Sidebar: move to bottom on mobile */
+  .detail-page-shell {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Detail hero card clearfix */
+  .detail-hero-card::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  /* Section cards smaller padding */
+  .detail-section-card,
+  .detail-hero-card {
+    padding: 14px !important;
+    border-radius: 16px !important;
+  }
+
+  .detail-sidebar-price {
+    font-size: 20px !important;
+  }
+
+  /* Profile card in detail */
+  .detail-profile-avatar {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 16px !important;
+  }
+
+  .detail-profile-info h3 {
+    font-size: 14px !important;
+  }
+
+  .detail-profile-info p {
+    font-size: 12px !important;
+  }
+
+  /* Section head */
+  .section-head h2 {
+    font-size: 16px !important;
+  }
+}
+
+/* Very small phones — 1 card per row for detail */
+@media (max-width: 390px) {
+  .detail-images-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+
+/* ============================================================
+   DASHBOARD MOBILE MENU
+   ============================================================ */
+
+.dashboard-mobile-header {
+  display: none;
+  margin-bottom: -10px;
+}
+
+.dashboard-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.dashboard-overlay {
+  display: none;
+}
+
+.dashboard-close-btn {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .dashboard-mobile-header {
+    display: block !important;
+  }
+
+  /* Make sidebar a slide-out drawer on mobile */
+  .dashboard-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 320px !important;
+    max-width: 85vw !important;
+    height: 100vh !important;
+    z-index: 99999 !important;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .dashboard-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .dashboard-sidebar-inner {
+    height: 100% !important;
+    border-radius: 0 24px 24px 0 !important;
+    overflow-y: auto !important;
+    padding-top: 50px !important; /* space for close button */
+  }
+
+  /* Overlay */
+  .dashboard-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0);
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, background 0.3s ease;
+  }
+
+  .dashboard-overlay.open {
+    background: rgba(15, 23, 42, 0.4);
+    z-index: 99998;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Close button */
+  .dashboard-close-btn {
+    display: block;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    background: var(--surface-soft);
+    border: none;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    z-index: 10;
+  }
+}
+
+
+
+/* ============================================================
+   MOBILE FABS (Messages & Create)
+   ============================================================ */
+
+.mobile-fabs-container {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-fabs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: fixed;
+    right: 20px;
+    bottom: calc(env(safe-area-inset-bottom) + 84px);
+    z-index: 99;
+  }
+
+  .mobile-fab-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .mobile-fab-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .mobile-fab-messages {
+    background: #6366f1; /* purple/indigo */
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+  }
+
+  .mobile-fab-create {
+    background: #10b981; /* green */
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+  }
+}
+
+
+/* ============================================================
+   MESSAGES LAYOUT RESPONSIVE
+   ============================================================ */
+
+.messages-layout-container {
+  height: calc(100vh - 120px);
+  display: flex;
+  gap: 0;
+  background: var(--surface);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+  min-height: 600px;
+}
+
+.messages-sidebar {
+  width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--line);
+}
+
+.messages-chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface-soft);
+}
+
+.messages-back-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .messages-layout-container {
+    height: calc(100vh - 100px); /* Adjust height for mobile */
+    min-height: unset;
+    border-radius: 12px;
+    border: none;
+  }
+
+  .messages-sidebar {
+    width: 100%;
+    border-right: none;
+  }
+
+  .messages-chat-area {
+    width: 100%;
+  }
+
+  .hidden-on-mobile {
+    display: none !important;
+  }
+
+  .messages-back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: var(--text);
+    cursor: pointer;
+    margin-left: -8px;
   }
 }
