@@ -6825,7 +6825,7 @@ select {
   }
 
   .profile-cover-section {
-    height: 120px;
+    height: auto;
   }
 
   .profile-avatar-lg {
@@ -7067,7 +7067,7 @@ select {
 
   /* ---------- Profile ---------- */
   .profile-cover-section {
-    height: 100px !important;
+    height: auto !important;
   }
 
   .profile-avatar-lg {
