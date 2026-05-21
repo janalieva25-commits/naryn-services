@@ -102,6 +102,10 @@ export default function DashboardPage() {
     return dist ? t(`districts.${dist}`, { defaultValue: dist }) : t('services.districtNotSpecified')
   }
 
+  const avgRating = reviews.length > 0 
+    ? (reviews.reduce((acc, r) => acc + (r.rating || 0), 0) / reviews.length).toFixed(1) 
+    : 0;
+
   if (profileLoading) {
     return (
       <div className="dashboard-page">
@@ -188,12 +192,12 @@ export default function DashboardPage() {
 
             <div className="stat-card">
               <p>{t('services.ratingLabel')}</p>
-              <h3>{profile?.rating ?? 0}</h3>
+              <h3>{avgRating}</h3>
             </div>
 
             <div className="stat-card">
               <p>{t('dashboard.reviews')}</p>
-              <h3>{profile?.reviews_count ?? 0}</h3>
+              <h3>{reviews.length}</h3>
             </div>
           </div>
 
