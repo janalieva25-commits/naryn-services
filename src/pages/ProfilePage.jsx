@@ -50,6 +50,7 @@ export default function ProfilePage() {
   const [reviewComment, setReviewComment] = useState('')
   const [isSubmittingReview, setIsSubmittingReview] = useState(false)
   const [reviewError, setReviewError] = useState('')
+  const [showAllReviews, setShowAllReviews] = useState(false)
 
   useEffect(() => {
     const tab = searchParams.get('tab')
@@ -269,9 +270,9 @@ export default function ProfilePage() {
           </div>
 
           <div className="profile-header-info">
-            <div className="profile-name-row">
-              <h1>{profile.full_name || t('services.defaultUser')}</h1>
-              {isSpecialist && <span className="badge-specialist">{t('dashboard.roleSpecialist')}</span>}
+            <div className="profile-name-row" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '6px' }}>
+              <h1 style={{ margin: 0, lineHeight: 1.2 }}>{profile.full_name || t('services.defaultUser')}</h1>
+              {isSpecialist && <span className="badge-specialist" style={{ margin: 0 }}>{t('dashboard.roleSpecialist')}</span>}
             </div>
             <p className="profile-username">@{profile.username || 'username'}</p>
 
@@ -295,16 +296,16 @@ export default function ProfilePage() {
       </div>
 
       {isSpecialist && (
-        <div className="profile-widgets-grid">
-          <div className="section-card stat-widget">
-            <h3>⭐ {t('services.ratingLabel')}</h3>
+        <div className="profile-widgets-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '12px' }}>
+          <div className="section-card stat-widget" style={{ padding: '16px' }}>
+            <h3 style={{ fontSize: '14px', marginBottom: '8px' }}>⭐ {t('services.ratingLabel')}</h3>
             <div className="stat-value">{averageRating}</div>
             <p className="stat-sub">{t('profile.basedOnReviews', { count: reviewsCount })}</p>
           </div>
           
-          <div className="section-card stat-widget">
-            <h3>💼 {t('dashboard.experience')}</h3>
-            <div className="stat-value-text">{getExperienceText(profile, t, i18n.language)}</div>
+          <div className="section-card stat-widget" style={{ padding: '16px' }}>
+            <h3 style={{ fontSize: '14px', marginBottom: '8px' }}>💼 {t('dashboard.experience')}</h3>
+            <div className="stat-value-text" style={{ fontSize: '14px' }}>{getExperienceText(profile, t, i18n.language)}</div>
           </div>
         </div>
       )}
@@ -396,7 +397,7 @@ export default function ProfilePage() {
             <p style={{ color: 'var(--text-muted)' }}>{t('profile.noReviewsYet')}</p>
           ) : (
             <div className="reviews-list">
-              {reviews.map((review) => (
+              {reviews.slice(0, showAllReviews ? reviews.length : 2).map((review) => (
                 <div key={review.id} className="review-card">
                   <div className="review-top">
                     <div className="review-author">
@@ -425,6 +426,25 @@ export default function ProfilePage() {
                   <p className="review-text">{review.comment || t('profile.noReviewText')}</p>
                 </div>
               ))}
+              
+              {!showAllReviews && reviews.length > 2 && (
+                <button 
+                  onClick={() => setShowAllReviews(true)}
+                  style={{ 
+                    width: '100%', 
+                    padding: '12px', 
+                    background: 'var(--bg-elevated)', 
+                    border: '1px solid var(--line)', 
+                    borderRadius: '12px',
+                    color: 'var(--text)',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    marginTop: '8px'
+                  }}
+                >
+                  Показать все отзывы ({reviews.length})
+                </button>
+              )}
             </div>
           )}
         </div>
