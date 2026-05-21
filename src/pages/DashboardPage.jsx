@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useProfile } from '../context/ProfileContext'
 import { useAuth } from '../context/AuthContext'
 import { supabase } from '../lib/supabase'
+import { getReviewsByUserId } from '../services/reviewsService'
 
 function formatMonthYear(value, lang) {
   if (!value) return ''
@@ -43,6 +44,18 @@ export default function DashboardPage() {
   const [uploading, setUploading] = useState(false)
   const [uploadMessage, setUploadMessage] = useState('')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  
+  const [reviews, setReviews] = useState([])
+  const [loadingReviews, setLoadingReviews] = useState(true)
+
+  useEffect(() => {
+    if (user?.id) {
+      getReviewsByUserId(user.id).then(data => {
+        setReviews(data)
+        setLoadingReviews(false)
+      })
+    }
+  }, [user?.id])
 
   const handleAvatarUpload = async (e) => {
     const file = e.target.files?.[0]
@@ -233,15 +246,21 @@ export default function DashboardPage() {
                 <h2>{t('dashboard.reviews')}</h2>
               </div>
 
-              <div className="review-short">
-                <p><strong>{t('dashboard.demoReviewName1', { defaultValue: 'Айгүл М.' })}</strong></p>
-                <p>{t('dashboard.demoReview1')}</p>
-              </div>
-
-              <div className="review-short">
-                <p><strong>{t('dashboard.demoReviewName2', { defaultValue: 'Нурзат К.' })}</strong></p>
-                <p>{t('dashboard.demoReview2')}</p>
-              </div>
+              {loadingReviews ? (
+                <div style={{ color: 'var(--muted)', fontSize: '14px' }}>{t('common.loading')}</div>
+              ) : reviews.length === 0 ? (
+                <div style={{ color: 'var(--muted)', fontSize: '14px' }}>{t('dashboard.noReviewsYet', { defaultValue: 'Отзывов пока нет' })}</div>
+              ) : (
+                reviews.map(review => (
+                  <div key={review.id} className="review-short" style={{ marginBottom: '16px', borderBottom: '1px solid var(--line)', paddingBottom: '12px' }}>
+                    <p style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                      <strong>{review.reviewer?.full_name || t('masters.noName')}</strong>
+                      <span style={{ color: '#f39c12', fontSize: '14px' }}>{'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}</span>
+                    </p>
+                    <p style={{ margin: 0, fontSize: '14px', color: 'var(--text)' }}>{review.comment}</p>
+                  </div>
+                ))
+              )}
             </div>
 
             <div className="section-card dark-card">

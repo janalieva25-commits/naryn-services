@@ -57,3 +57,21 @@ export async function checkCanReview(currentUserId, specialistId) {
 
   return data && data.length > 0
 }
+
+export async function getReviewsByUserId(userId) {
+  if (!userId) return []
+  const { data, error } = await supabase
+    .from('reviews')
+    .select(`
+      *,
+      reviewer:reviewer_id(full_name, avatar_url)
+    `)
+    .eq('reviewee_id', userId)
+    .order('created_at', { ascending: false })
+    
+  if (error) {
+    console.error('Ошибка при получении отзывов:', error)
+    return []
+  }
+  return data
+}
