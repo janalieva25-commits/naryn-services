@@ -46,11 +46,30 @@ export default function MastersPage() {
           `)
           .eq('role', 'specialist')
           .not('experience_from', 'is', null)
-          .order('rating', { ascending: false })
 
         if (error) throw error
 
-        setMasters(data || [])
+        if (data && data.length > 0) {
+          const masterIds = data.map(m => m.id)
+          const { data: reviewsData } = await supabase
+            .from('reviews')
+            .select('reviewee_id, rating')
+            .in('reviewee_id', masterIds)
+
+          const mappedMasters = data.map(m => {
+            const masterReviews = (reviewsData || []).filter(r => r.reviewee_id === m.id)
+            const calcRating = masterReviews.length > 0 
+              ? (masterReviews.reduce((acc, r) => acc + (Number(r.rating) || 0), 0) / masterReviews.length).toFixed(1)
+              : 0
+            return { ...m, calculatedRating: calcRating }
+          })
+          
+          // Сортируем по высчитанному рейтингу
+          mappedMasters.sort((a, b) => Number(b.calculatedRating) - Number(a.calculatedRating))
+          setMasters(mappedMasters)
+        } else {
+          setMasters([])
+        }
       } catch (error) {
         setErrorMessage(error.message || t('masters.loadError'))
       } finally {
@@ -222,7 +241,7 @@ export default function MastersPage() {
 
                   <div className="market-meta" style={{ marginTop: 'auto' }}>
                     <div className="market-meta-left">
-                      <span>★ {master.rating || 0}</span>
+                      <span>★ {master.calculatedRating || 0}</span>
                       <span>
                         {getTranslatedDistrict(master.district)}
                       </span>
