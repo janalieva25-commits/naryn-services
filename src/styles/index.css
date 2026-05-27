@@ -2509,8 +2509,7 @@ select {
 
 .hero-search button,
 .primary-link,
-.secondary-link,
-.card-link {
+.secondary-link {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
@@ -2526,8 +2525,7 @@ select {
   color: var(--color-text-inverse);
 }
 
-.secondary-link,
-.card-link {
+.secondary-link {
   border: 1px solid oklch(from var(--color-text) l c h / 0.12);
   background: transparent;
 }
@@ -2760,8 +2758,7 @@ select {
 }
 
 .primary-link,
-.secondary-link,
-.card-link {
+.secondary-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2778,8 +2775,7 @@ select {
   font-weight: 700;
 }
 
-.secondary-link,
-.card-link {
+.secondary-link {
   border: 1px solid var(--border);
   color: var(--text);
   background: transparent;
@@ -2791,8 +2787,7 @@ select {
   filter: brightness(1.03);
 }
 
-.secondary-link:hover,
-.card-link:hover {
+.secondary-link:hover {
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -3229,7 +3224,7 @@ select {
   border: 1px solid rgba(99,102,241, 0.18);
 }
 
-.card-link {
+.some-other-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -3355,7 +3350,7 @@ select {
   border: 1px solid rgba(99,102,241, 0.18);
 }
 
-.dark .card-link {
+.dark .some-other-link {
   color: var(--text);
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
