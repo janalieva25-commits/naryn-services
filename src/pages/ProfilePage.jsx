@@ -3,7 +3,7 @@ import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../context/AuthContext'
-import { createReview, checkCanReview } from '../services/reviewsService'
+import { createReview, checkCanReview, deleteReview } from '../services/reviewsService'
 import { createNotification } from '../services/notificationsService'
 
 function formatMonthYear(value, lang) {
@@ -201,6 +201,16 @@ export default function ProfilePage() {
       setReviewError(err.message || t('profile.reviewSubmitError'))
     } finally {
       setIsSubmittingReview(false)
+    }
+  }
+
+  const handleDeleteReview = async (reviewId) => {
+    if (!window.confirm(t('common.confirmDelete', { defaultValue: 'Удалить этот отзыв?' }))) return
+    try {
+      await deleteReview(reviewId)
+      setReviews(prev => prev.filter(r => r.id !== reviewId))
+    } catch (err) {
+      alert(err.message || t('common.error'))
     }
   }
 
@@ -421,7 +431,25 @@ export default function ProfilePage() {
                         </p>
                       </div>
                     </div>
-                    <span className="review-rating" style={{ color: 'var(--primary)', fontWeight: 'bold' }}>★ {review.rating}</span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <span className="review-rating" style={{ color: 'var(--primary)', fontWeight: 'bold' }}>★ {review.rating}</span>
+                      {user && user.id === review.reviewer_id && (
+                        <button 
+                          onClick={() => handleDeleteReview(review.id)}
+                          style={{ 
+                            background: 'none', 
+                            border: 'none', 
+                            color: '#e74c3c', 
+                            cursor: 'pointer',
+                            fontSize: '18px',
+                            padding: '4px'
+                          }}
+                          title={t('common.delete', { defaultValue: 'Удалить' })}
+                        >
+                          ×
+                        </button>
+                      )}
+                    </div>
                   </div>
                   <p className="review-text">{review.comment || t('profile.noReviewText')}</p>
                 </div>

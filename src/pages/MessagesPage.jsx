@@ -626,7 +626,6 @@ export default function MessagesPage() {
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && !e.shiftKey) {
-                       // On mobile, Enter should probably create a new line if not Shift+Enter, or just send.
                       e.preventDefault()
                       editingMessageId ? handleEditSubmit(e) : handleSubmit(e)
                     }

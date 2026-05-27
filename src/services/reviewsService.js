@@ -75,3 +75,12 @@ export async function getReviewsByUserId(userId) {
   }
   return data
 }
+
+export async function deleteReview(reviewId) {
+  const { error } = await supabase
+    .from('reviews')
+    .delete()
+    .eq('id', reviewId)
+
+  if (error) throw error
+}

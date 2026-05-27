@@ -7844,9 +7844,9 @@ select {
 }
 
 
-/* ============================================================
-   DASHBOARD MOBILE MENU
-   ============================================================ */
+/* 
+  MOBILE MENU
+ */
 
 .dashboard-mobile-header {
   display: none;
@@ -7944,9 +7944,7 @@ select {
 
 
 
-/* ============================================================
-   MOBILE FABS (Messages & Create)
-   ============================================================ */
+/* Mobile Fabs */
 
 .mobile-fabs-container {
   display: none;
@@ -7994,9 +7992,9 @@ select {
 }
 
 
-/* ============================================================
-   MESSAGES LAYOUT RESPONSIVE
-   ============================================================ */
+/* 
+   MESSAGES 
+    */
 
 .messages-layout-container {
   height: calc(100vh - 120px);
