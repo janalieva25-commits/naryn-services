@@ -1,4 +1,4 @@
-﻿{
+{
   "nav": {
     "home": "Home",
     "services": "Services",
@@ -279,6 +279,7 @@
     "openOrder": "Open Order"
   },
   "common": {
+    "loading": "Loading...",
     "error": "Error",
     "submitting": "Submitting...",
     "send": "Send",
