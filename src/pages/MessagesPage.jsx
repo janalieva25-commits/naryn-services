@@ -535,7 +535,8 @@ export default function MessagesPage() {
             </div>
 
             {/* ── Input Area ── */}
-            <div style={{ flexShrink: 0, background: 'var(--surface)', borderTop: '1px solid var(--line)', padding: '10px 16px' }}>
+            <div style={{ flexShrink: 0, background: 'var(--surface)', borderTop: '1px solid var(--line)' }}>
+              <div style={{ padding: '10px 16px' }}>
 
               {/* Attached files preview */}
               {(attachedImages.length > 0 || attachedDocs.length > 0) && (
@@ -620,11 +621,10 @@ export default function MessagesPage() {
                   <div className="emoji-zone" style={{ position: 'relative' }}>
                     <button type="button" onClick={(e) => { 
                       e.stopPropagation()
-                      setShowEmoji(v => {
-                        const next = !v;
-                        if (next) textareaRef.current?.blur();
-                        return next;
-                      })
+                      if (!showEmoji) {
+                        textareaRef.current?.blur();
+                      }
+                      setShowEmoji(v => !v);
                     }} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '22px', padding: '6px 8px', color: 'var(--muted)', lineHeight: 1 }}>😊</button>
                   </div>
                 </div>
@@ -675,9 +675,10 @@ export default function MessagesPage() {
                   {uploading ? '⏳' : editingMessageId ? '✓' : '➤'}
                 </button>
               </form>
+              </div>
               
               {showEmoji && (
-                <div style={{ width: '100%', marginTop: '10px' }}>
+                <div style={{ width: '100%', background: 'var(--surface)' }}>
                   <EmojiPicker onEmojiClick={handleEmojiClick} theme="auto" height={300} width="100%" previewConfig={{ showPreview: false }} searchPlaceholder={t('common.search')} />
                 </div>
               )}
