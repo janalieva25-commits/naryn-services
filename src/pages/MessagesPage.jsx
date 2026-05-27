@@ -620,9 +620,14 @@ export default function MessagesPage() {
                   
                   <div className="emoji-zone" style={{ position: 'relative' }}>
                     <button type="button" onClick={(e) => { 
+                      e.preventDefault()
                       e.stopPropagation()
                       if (!showEmoji) {
+                        if (document.activeElement instanceof HTMLElement) {
+                          document.activeElement.blur();
+                        }
                         textareaRef.current?.blur();
+                        window.focus();
                       }
                       setShowEmoji(v => !v);
                     }} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '22px', padding: '6px 8px', color: 'var(--muted)', lineHeight: 1 }}>😊</button>
