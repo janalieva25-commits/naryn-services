@@ -350,8 +350,10 @@ export default function Header() {
                   style={{
                     position: 'relative',
                     width: '100%', textAlign: 'left', padding: '14px',
-                    border: '1px solid var(--line)', borderRadius: '16px',
-                    background: notification.is_read ? 'var(--surface)' : 'rgba(99, 102, 241, 0.08)',
+                    border: '1px solid var(--glass-border)', borderRadius: '16px',
+                    background: notification.is_read ? 'var(--glass-item)' : 'var(--glass-item-unread)',
+                    backdropFilter: 'blur(16px)',
+                    WebkitBackdropFilter: 'blur(16px)',
                     color: 'var(--text)', cursor: 'pointer',
                     transition: 'transform 0.18s ease, box-shadow 0.18s ease',
                   }}
