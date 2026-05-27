@@ -620,17 +620,14 @@ export default function MessagesPage() {
                   
                   <div className="emoji-zone" style={{ position: 'relative' }}>
                     <button type="button" onClick={(e) => { 
-                      e.preventDefault()
                       e.stopPropagation()
                       if (!showEmoji) {
-                        if (document.activeElement instanceof HTMLElement) {
-                          document.activeElement.blur();
-                        }
                         textareaRef.current?.blur();
-                        window.focus();
+                      } else {
+                        setTimeout(() => textareaRef.current?.focus(), 50);
                       }
                       setShowEmoji(v => !v);
-                    }} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '22px', padding: '6px 8px', color: 'var(--muted)', lineHeight: 1 }}>😊</button>
+                    }} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '22px', padding: '6px 8px', color: 'var(--muted)', lineHeight: 1 }}>{showEmoji ? '⌨️' : '😊'}</button>
                   </div>
                 </div>
 
@@ -651,6 +648,8 @@ export default function MessagesPage() {
                     }
                   }}
                   onFocus={() => setShowEmoji(false)}
+                  onClick={() => { if (showEmoji) setShowEmoji(false) }}
+                  readOnly={showEmoji}
                   rows={1}
                   style={{
                     flex: 1, resize: 'none', border: 'none',
@@ -683,8 +682,8 @@ export default function MessagesPage() {
               </div>
               
               {showEmoji && (
-                <div style={{ width: '100%', background: 'var(--surface)' }}>
-                  <EmojiPicker autoFocusSearch={false} onEmojiClick={handleEmojiClick} theme="auto" height={300} width="100%" previewConfig={{ showPreview: false }} searchPlaceholder={t('common.search')} />
+                <div style={{ width: '100%', background: 'var(--surface)', borderTop: '1px solid var(--line)', touchAction: 'pan-y' }}>
+                  <EmojiPicker autoFocusSearch={false} onEmojiClick={handleEmojiClick} theme="auto" height={320} width="100%" previewConfig={{ showPreview: false }} searchPlaceholder={t('common.search')} />
                 </div>
               )}
             </div>
