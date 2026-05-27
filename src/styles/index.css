@@ -7652,9 +7652,12 @@ select {
   }
 
   /* Card body compact */
-  .market-body {
+  .market-body,
+  .order-card-body {
     padding: 8px 8px 6px !important;
     gap: 3px !important;
+    text-align: center !important;
+    align-items: center !important;
   }
 
   .market-body h3 {
@@ -7675,6 +7678,7 @@ select {
   .order-card-meta {
     flex-direction: column !important;
     gap: 2px !important;
+    align-items: center !important;
   }
 
   .market-meta-left,
@@ -7682,6 +7686,7 @@ select {
     display: flex !important;
     flex-direction: column !important;
     gap: 1px !important;
+    align-items: center !important;
   }
 
   .market-meta-left strong,
