@@ -4656,10 +4656,12 @@ select {
 }
 
 .market-meta-left,
-.market-meta-right {
+.market-meta-right,
+.order-card-meta-left,
+.order-card-meta-right {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .market-meta-left strong {
@@ -7685,7 +7687,7 @@ select {
   .order-card-meta-left {
     display: flex !important;
     flex-direction: column !important;
-    gap: 1px !important;
+    gap: 4px !important;
   }
 
   .market-meta-left strong,
