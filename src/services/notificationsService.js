@@ -50,3 +50,13 @@ export async function createNotification({ userId, type, content, link }) {
   if (error) throw error
   return true
 }
+
+export async function deleteNotification(notificationId) {
+  const { error } = await supabase.from('notifications').delete().eq('id', notificationId);
+  if (error) throw error;
+}
+
+export async function deleteAllNotifications(userId) {
+  const { error } = await supabase.from('notifications').delete().eq('user_id', userId);
+  if (error) throw error;
+}

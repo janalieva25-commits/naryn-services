@@ -52,7 +52,6 @@ export default function MessagesPage() {
 
   const bottomRef = useRef(null)
   const textareaRef = useRef(null)
-  const initializedFromQueryRef = useRef(false)
 
   const activeConversationId = activeConversation?.id || null
 
@@ -96,8 +95,7 @@ export default function MessagesPage() {
 
   useEffect(() => {
     const init = async () => {
-      if (!user?.id || initializedFromQueryRef.current || (!jobId && !serviceId)) return
-      initializedFromQueryRef.current = true
+      if (!user?.id || (!jobId && !serviceId)) return
       try {
         let item = null
         if (jobId) item = await getJobById(jobId)

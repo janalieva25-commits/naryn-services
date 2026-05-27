@@ -139,6 +139,26 @@ export default function Header() {
     )
   }
 
+  const handleDeleteNotification = async (e, id) => {
+    e.stopPropagation()
+    try {
+      await supabase.from('notifications').delete().eq('id', id)
+      setNotifications(prev => prev.filter(n => n.id !== id))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleClearAllNotifications = async () => {
+    if (!user?.id) return
+    try {
+      await supabase.from('notifications').delete().eq('user_id', user.id)
+      setNotifications([])
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   const unreadCount = notifications.filter((item) => !item.is_read).length
 
   return (
@@ -279,6 +299,19 @@ export default function Header() {
               >
                 {t('header.markAllRead')}
               </button>
+              {notifications.length > 0 && (
+                <button
+                  type="button"
+                  onClick={handleClearAllNotifications}
+                  style={{
+                    border: '1px solid rgba(239, 68, 68, 0.2)', borderRadius: '12px', padding: '8px 12px',
+                    background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444',
+                    cursor: 'pointer', fontWeight: 600, fontSize: '12px',
+                  }}
+                >
+                  {t('notifications.clearAll', 'Очистить')}
+                </button>
+              )}
               <button
                 type="button"
                 onClick={() => setNotificationsOpen(false)}
@@ -311,11 +344,11 @@ export default function Header() {
               </div>
             ) : (
               notifications.map((notification) => (
-                <button
+                <div
                   key={notification.id}
-                  type="button"
                   onClick={() => handleNotificationClick(notification)}
                   style={{
+                    position: 'relative',
                     width: '100%', textAlign: 'left', padding: '14px',
                     border: '1px solid var(--line)', borderRadius: '16px',
                     background: notification.is_read ? 'var(--surface)' : 'rgba(99, 102, 241, 0.08)',
@@ -323,9 +356,34 @@ export default function Header() {
                     transition: 'transform 0.18s ease, box-shadow 0.18s ease',
                   }}
                 >
+                  <button
+                    onClick={(e) => handleDeleteNotification(e, notification.id)}
+                    style={{
+                      position: 'absolute',
+                      top: '12px',
+                      right: '12px',
+                      background: 'none',
+                      border: 'none',
+                      color: 'var(--muted)',
+                      cursor: 'pointer',
+                      padding: '4px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: '50%',
+                    }}
+                    title={t('common.delete', 'Удалить')}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+
                   <div style={{
                     display: 'flex', justifyContent: 'space-between',
                     gap: '12px', marginBottom: '6px', alignItems: 'center',
+                    paddingRight: '20px'
                   }}>
                     <strong style={{ fontSize: '14px', color: 'var(--text)' }}>
                       {notification.type === 'message' && '💬 '}
@@ -352,7 +410,7 @@ export default function Header() {
                   <div style={{ fontSize: '11px', opacity: 0.6, color: 'var(--muted)' }}>
                     {new Date(notification.created_at).toLocaleString('ru-RU')}
                   </div>
-                </button>
+                </div>
               ))
             )}
           </div>
