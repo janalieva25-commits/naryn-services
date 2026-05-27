@@ -683,7 +683,17 @@ export default function MessagesPage() {
               
               {showEmoji && (
                 <div style={{ width: '100%', background: 'var(--surface)', borderTop: '1px solid var(--line)', touchAction: 'pan-y' }}>
-                  <EmojiPicker autoFocusSearch={false} onEmojiClick={handleEmojiClick} theme="auto" height={320} width="100%" previewConfig={{ showPreview: false }} searchPlaceholder={t('common.search')} />
+                  <EmojiPicker 
+                    autoFocusSearch={false} 
+                    searchDisabled={true}
+                    skinTonesDisabled={true}
+                    onEmojiClick={handleEmojiClick} 
+                    theme="auto" 
+                    height={320} 
+                    width="100%" 
+                    previewConfig={{ showPreview: false }} 
+                    style={{ borderRadius: 0, border: 'none' }}
+                  />
                 </div>
               )}
             </div>
