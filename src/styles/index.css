@@ -4854,7 +4854,9 @@ select {
 .order-card-meta {
   margin-top: auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
   gap: 7px;
 }
 
@@ -7670,11 +7672,13 @@ select {
     display: none !important;
   }
 
-  /* Price & district in one line */
+  /* Price & district on left, author on right */
   .market-meta,
   .order-card-meta {
-    flex-direction: column !important;
-    gap: 2px !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    gap: 8px !important;
   }
 
   .market-meta-left,
@@ -7697,10 +7701,12 @@ select {
     opacity: 0.7 !important;
   }
 
-  /* Hide author on small cards */
+  /* Show author on small cards (user requested to keep it) */
   .market-meta-right,
   .order-card-meta-right {
-    display: none !important;
+    display: flex !important;
+    transform: scale(0.85);
+    transform-origin: right bottom;
   }
 
   /* Card footer button */
