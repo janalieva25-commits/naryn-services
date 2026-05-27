@@ -76,7 +76,7 @@ export default function MessagesPage() {
 
   useEffect(() => {
     const close = (e) => { 
-      if (!e.target.closest('.emoji-zone')) setShowEmoji(false) 
+      if (!e.target.closest('.emoji-zone') && !e.target.closest('.emoji-picker-container')) setShowEmoji(false) 
       if (!e.target.closest('.attach-zone')) setShowAttachMenu(false)
     }
     document.addEventListener('click', close)
@@ -682,7 +682,7 @@ export default function MessagesPage() {
               </div>
               
               {showEmoji && (
-                <div style={{ width: '100%', background: 'var(--surface)', borderTop: '1px solid var(--line)', touchAction: 'pan-y' }}>
+                <div className="emoji-picker-container" style={{ width: '100%', background: 'var(--surface)', borderTop: '1px solid var(--line)', touchAction: 'pan-y' }}>
                   <EmojiPicker 
                     autoFocusSearch={false} 
                     searchDisabled={true}
