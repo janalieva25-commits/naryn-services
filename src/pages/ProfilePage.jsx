@@ -51,6 +51,7 @@ export default function ProfilePage() {
   const [isSubmittingReview, setIsSubmittingReview] = useState(false)
   const [reviewError, setReviewError] = useState('')
   const [showAllReviews, setShowAllReviews] = useState(false)
+  const [reviewMenuOpenId, setReviewMenuOpenId] = useState(null)
 
   useEffect(() => {
     const tab = searchParams.get('tab')
@@ -434,20 +435,62 @@ export default function ProfilePage() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                       <span className="review-rating" style={{ color: 'var(--primary)', fontWeight: 'bold' }}>★ {review.rating}</span>
                       {user && user.id === review.reviewer_id && (
-                        <button 
-                          onClick={() => handleDeleteReview(review.id)}
-                          style={{ 
-                            background: 'none', 
-                            border: 'none', 
-                            color: '#e74c3c', 
-                            cursor: 'pointer',
-                            fontSize: '18px',
-                            padding: '4px'
-                          }}
-                          title={t('common.delete', { defaultValue: 'Удалить' })}
-                        >
-                          ×
-                        </button>
+                        <div style={{ position: 'relative' }}>
+                          <button 
+                            onClick={() => setReviewMenuOpenId(reviewMenuOpenId === review.id ? null : review.id)}
+                            style={{ 
+                              background: 'none', 
+                              border: 'none', 
+                              color: 'var(--muted)', 
+                              cursor: 'pointer',
+                              fontSize: '18px',
+                              padding: '4px 8px',
+                              borderRadius: '4px',
+                              lineHeight: 1
+                            }}
+                          >
+                            ⋮
+                          </button>
+                          {reviewMenuOpenId === review.id && (
+                            <div 
+                              onClick={e => e.stopPropagation()} 
+                              style={{ 
+                                position: 'absolute', 
+                                top: '100%', 
+                                right: 0, 
+                                background: 'var(--surface)', 
+                                border: '1px solid var(--line)', 
+                                borderRadius: '10px', 
+                                boxShadow: 'var(--shadow)', 
+                                zIndex: 100, 
+                                minWidth: '130px', 
+                                overflow: 'hidden' 
+                              }}
+                            >
+                              <button 
+                                onClick={() => {
+                                  handleDeleteReview(review.id);
+                                  setReviewMenuOpenId(null);
+                                }} 
+                                style={{ 
+                                  width: '100%', 
+                                  padding: '9px 14px', 
+                                  textAlign: 'left', 
+                                  background: 'none', 
+                                  border: 'none', 
+                                  cursor: 'pointer', 
+                                  color: '#e74c3c', 
+                                  fontSize: '13px', 
+                                  display: 'flex', 
+                                  alignItems: 'center', 
+                                  gap: '8px' 
+                                }}
+                              >
+                                🗑️ {t('common.delete', { defaultValue: 'Удалить' })}
+                              </button>
+                            </div>
+                          )}
+                        </div>
                       )}
                     </div>
                   </div>
