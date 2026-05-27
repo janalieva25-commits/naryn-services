@@ -684,7 +684,7 @@ export default function MessagesPage() {
               
               {showEmoji && (
                 <div style={{ width: '100%', background: 'var(--surface)' }}>
-                  <EmojiPicker onEmojiClick={handleEmojiClick} theme="auto" height={300} width="100%" previewConfig={{ showPreview: false }} searchPlaceholder={t('common.search')} />
+                  <EmojiPicker autoFocusSearch={false} onEmojiClick={handleEmojiClick} theme="auto" height={300} width="100%" previewConfig={{ showPreview: false }} searchPlaceholder={t('common.search')} />
                 </div>
               )}
             </div>
