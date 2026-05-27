@@ -593,12 +593,8 @@ select {
 
 .market-meta {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 4px;
-  margin-top: auto;
-  width: 100%;
 }
 
 .market-meta button {
@@ -4823,8 +4819,6 @@ select {
   gap: 7px;
   padding: 11px;
   flex: 1;
-  text-align: center;
-  align-items: center;
 }
 
 .market-body h3,
@@ -7658,12 +7652,9 @@ select {
   }
 
   /* Card body compact */
-  .market-body,
-  .order-card-body {
+  .market-body {
     padding: 8px 8px 6px !important;
     gap: 3px !important;
-    text-align: center !important;
-    align-items: center !important;
   }
 
   .market-body h3 {
@@ -7684,7 +7675,6 @@ select {
   .order-card-meta {
     flex-direction: column !important;
     gap: 2px !important;
-    align-items: center !important;
   }
 
   .market-meta-left,
@@ -7692,7 +7682,6 @@ select {
     display: flex !important;
     flex-direction: column !important;
     gap: 1px !important;
-    align-items: center !important;
   }
 
   .market-meta-left strong,
@@ -8085,27 +8074,8 @@ select {
   }
 }
 
-/* GLOBAL CENTERING OVERRIDES */
-.market-meta,
-.order-card-meta {
-  flex-direction: column !important;
-  align-items: center !important;
-  text-align: center !important;
-}
-
-.market-meta-left,
-.order-card-meta-left {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  text-align: center !important;
-}
-
-.market-meta-right,
-.order-card-meta-right {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  text-align: center !important;
-  margin-top: 4px !important;
+/* Center image horizontally within the card */
+.card-link,
+.order-card-link {
+  margin: 0 auto;
 }
