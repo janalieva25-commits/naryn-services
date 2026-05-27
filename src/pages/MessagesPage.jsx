@@ -14,6 +14,7 @@ import {
   deleteMessage,
   clearConversation,
   deleteConversation,
+  getConversationById,
 } from '../services/messagesService'
 import { getJobById } from '../services/jobsService'
 import { getServiceById } from '../services/servicesService'
@@ -26,6 +27,7 @@ export default function MessagesPage() {
   const { t, i18n } = useTranslation()
   const jobId = searchParams.get('jobId')
   const serviceId = searchParams.get('serviceId')
+  const conversationId = searchParams.get('conversationId')
 
   const [conversations, setConversations] = useState([])
   const [activeConversation, setActiveConversation] = useState(null)
@@ -95,30 +97,40 @@ export default function MessagesPage() {
 
   useEffect(() => {
     const init = async () => {
-      if (!user?.id || (!jobId && !serviceId)) return
+      if (!user?.id || (!jobId && !serviceId && !conversationId)) return
       try {
-        let item = null
-        if (jobId) item = await getJobById(jobId)
-        else if (serviceId) item = await getServiceById(serviceId)
-        if (!item) return
-        const ownerId = item.user_id
-        if (!ownerId) return
-        const conversation = await findOrCreateConversation({
-          jobId: jobId || null, serviceId: serviceId || null,
-          customerId: jobId ? ownerId : user.id,
-          specialistId: jobId ? user.id : ownerId,
-          createdBy: user.id,
-        })
-        setActiveConversation(conversation)
-        setConversations(prev => {
-          const exists = prev.some(c => c.id === conversation.id)
-          if (exists) return prev.map(c => c.id === conversation.id ? conversation : c)
-          return [conversation, ...prev]
-        })
+        let conversation = null
+        
+        if (conversationId) {
+          conversation = await getConversationById(conversationId)
+        } else {
+          let item = null
+          if (jobId) item = await getJobById(jobId)
+          else if (serviceId) item = await getServiceById(serviceId)
+          if (!item) return
+          const ownerId = item.user_id
+          if (!ownerId) return
+          if (user.id === ownerId) return // Cannot guess the other participant just from jobId/serviceId
+          conversation = await findOrCreateConversation({
+            jobId: jobId || null, serviceId: serviceId || null,
+            customerId: jobId ? ownerId : user.id,
+            specialistId: jobId ? user.id : ownerId,
+            createdBy: user.id,
+          })
+        }
+        
+        if (conversation) {
+          setActiveConversation(conversation)
+          setConversations(prev => {
+            const exists = prev.some(c => c.id === conversation.id)
+            if (exists) return prev.map(c => c.id === conversation.id ? conversation : c)
+            return [conversation, ...prev]
+          })
+        }
       } catch (e) { console.error(e) }
     }
     init()
-  }, [user?.id, jobId, serviceId])
+  }, [user?.id, jobId, serviceId, conversationId])
 
   useEffect(() => {
     const load = async () => {
@@ -213,7 +225,7 @@ export default function MessagesPage() {
           await createNotification({
             userId: receiverId, type: 'message',
             content: `${senderName}: ${text.trim() ? text.trim().slice(0, 45) : t('messages.fileSuffix')}`,
-            link: activeConversation.job_id ? `/messages?jobId=${activeConversation.job_id}` : `/messages?serviceId=${activeConversation.service_id}`
+            link: `/messages?conversationId=${activeConversation.id}`
           })
         } catch (notifErr) {
           console.error('Failed to create notification', notifErr)
