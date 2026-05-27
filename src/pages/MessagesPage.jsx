@@ -251,7 +251,10 @@ export default function MessagesPage() {
 
   const handleDelete = async (msgId) => {
     if (!window.confirm(t('messages.confirmDeleteMsg'))) return
-    try { await deleteMessage(msgId) } catch (err) { alert(err.message) }
+    try { 
+      setMessages(prev => prev.filter(m => m.id !== msgId))
+      await deleteMessage(msgId) 
+    } catch (err) { alert(err.message) }
     setMenuOpenId(null)
   }
 
@@ -616,11 +619,6 @@ export default function MessagesPage() {
                   
                   <div className="emoji-zone" style={{ position: 'relative' }}>
                     <button type="button" onClick={(e) => { e.stopPropagation(); setShowEmoji(v => !v) }} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '22px', padding: '6px 8px', color: 'var(--muted)', lineHeight: 1 }}>😊</button>
-                    {showEmoji && (
-                      <div style={{ position: 'absolute', bottom: '48px', left: 0, zIndex: 200 }}>
-                        <EmojiPicker onEmojiClick={handleEmojiClick} theme="auto" height={350} width={300} previewConfig={{ showPreview: false }} searchPlaceholder={t('common.search')} />
-                      </div>
-                    )}
                   </div>
                 </div>
 
@@ -669,6 +667,12 @@ export default function MessagesPage() {
                   {uploading ? '⏳' : editingMessageId ? '✓' : '➤'}
                 </button>
               </form>
+              
+              {showEmoji && (
+                <div style={{ width: '100%', marginTop: '10px' }}>
+                  <EmojiPicker onEmojiClick={handleEmojiClick} theme="auto" height={300} width="100%" previewConfig={{ showPreview: false }} searchPlaceholder={t('common.search')} />
+                </div>
+              )}
             </div>
           </>
         )}
