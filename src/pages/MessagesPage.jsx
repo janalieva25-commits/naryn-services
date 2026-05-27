@@ -269,7 +269,7 @@ export default function MessagesPage() {
     } else {
       setText(prev => prev + emojiData.emoji)
     }
-    textareaRef.current?.focus()
+    // Do not focus the textarea here, otherwise the native OS keyboard will pop up and ruin the layout
   }
 
   const formatTime = (d) => {
@@ -618,7 +618,14 @@ export default function MessagesPage() {
                   )}
                   
                   <div className="emoji-zone" style={{ position: 'relative' }}>
-                    <button type="button" onClick={(e) => { e.stopPropagation(); setShowEmoji(v => !v) }} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '22px', padding: '6px 8px', color: 'var(--muted)', lineHeight: 1 }}>😊</button>
+                    <button type="button" onClick={(e) => { 
+                      e.stopPropagation()
+                      setShowEmoji(v => {
+                        const next = !v;
+                        if (next) textareaRef.current?.blur();
+                        return next;
+                      })
+                    }} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '22px', padding: '6px 8px', color: 'var(--muted)', lineHeight: 1 }}>😊</button>
                   </div>
                 </div>
 
@@ -638,6 +645,7 @@ export default function MessagesPage() {
                       editingMessageId ? handleEditSubmit(e) : handleSubmit(e)
                     }
                   }}
+                  onFocus={() => setShowEmoji(false)}
                   rows={1}
                   style={{
                     flex: 1, resize: 'none', border: 'none',
