@@ -4779,8 +4779,10 @@ select {
 .market-image-wrap,
 .order-card-image-wrap {
   position: relative;
-  width: 100%;
-  height: 140px;
+  width: calc(100% - 12px);
+  margin: 6px;
+  height: 130px;
+  border-radius: 10px;
   overflow: hidden;
   background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
 }
@@ -6209,6 +6211,13 @@ select {
   border: 1px solid var(--line);
 }
 
+.market-card,
+.market-card-compact,
+.order-card-modern {
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
 /* NEW PROFILE STYLES */
 .profile-cover-section {
   display: flex;
@@ -6503,7 +6512,7 @@ select {
 
 .dark .market-card,
 .dark .order-card-modern {
-  background: rgba(255, 255, 255, 0.04);
+  background: #1e293b;
   border-color: rgba(255, 255, 255, 0.08);
 }
 
@@ -7667,30 +7676,35 @@ select {
   }
 
   /* Price & district in one line */
-  .market-meta {
+  .market-meta,
+  .order-card-meta {
     flex-direction: column !important;
     gap: 2px !important;
   }
 
-  .market-meta-left {
+  .market-meta-left,
+  .order-card-meta-left {
     display: flex !important;
     flex-direction: column !important;
     gap: 1px !important;
   }
 
-  .market-meta-left strong {
+  .market-meta-left strong,
+  .order-card-meta-left strong {
     font-size: 12px !important;
     color: var(--primary) !important;
     font-weight: 800 !important;
   }
 
-  .market-meta-left span {
+  .market-meta-left span,
+  .order-card-meta-left span {
     font-size: 10px !important;
     opacity: 0.7 !important;
   }
 
   /* Hide author on small cards */
-  .market-meta-right {
+  .market-meta-right,
+  .order-card-meta-right {
     display: none !important;
   }
 
