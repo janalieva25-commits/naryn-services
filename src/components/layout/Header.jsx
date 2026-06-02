@@ -255,20 +255,20 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Overlay backdrop */}
+      {/* Фон-подложка */}
       <div
         onClick={() => setNotificationsOpen(false)}
         className={notificationsOpen ? 'notif-overlay notif-overlay--open' : 'notif-overlay'}
       >
-        {/* Panel — bottom sheet on mobile, right drawer on desktop */}
+        {/* Панель (снизу на мобильных, справа на ПК) */}
         <div
           onClick={(e) => e.stopPropagation()}
           className={notificationsOpen ? 'notif-panel notif-panel--open' : 'notif-panel'}
         >
-          {/* Drag handle (mobile only) */}
+          {/* Элемент для перетаскивания (только на мобильных) */}
           <div className="notif-drag-handle" />
 
-          {/* Header */}
+          {/* Шапка */}
           <div style={{
             padding: '16px 20px 14px',
             borderBottom: '1px solid var(--line)',
@@ -327,7 +327,7 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Notifications list */}
+          {/* Список уведомлений */}
           <div style={{
             flex: 1, overflowY: 'auto',
             padding: '14px 16px 24px',

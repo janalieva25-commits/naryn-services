@@ -3623,9 +3623,9 @@ select {
 
 
 
-/* =========================
+/* 
    MESSAGES PAGE
-========================= */
+ */
 
 .messages-page {
   width: 100%;
@@ -4728,7 +4728,7 @@ select {
 
 
 
-/* ===== FINAL COMPACT UNIVERSAL CARDS ===== */
+/*  FINAL COMPACT UNIVERSAL CARDS  */
 
 .my-grid,
 .orders-grid {
@@ -5250,7 +5250,7 @@ select {
 
 
 
-/* ===== UNIFIED OUTER PAGE SHELL ===== */
+/*  UNIFIED OUTER PAGE SHELL  */
 
 .services-page,
 .orders-page,
@@ -6345,9 +6345,9 @@ select {
   color: var(--muted);
 }
 
-/* ==========================================================================
+/* 
    COMFORT STYLES FOR LANDING PAGE (MARKETPLACE)
-   ========================================================================= */
+    */
 .comfort-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -6524,9 +6524,9 @@ select {
 }
 
 
-/* ============================================================
+/* 
    Card footer buttons — universal purple gradient style
-   ============================================================ */
+    */
 .market-card-footer,
 .order-card-footer {
   padding: 0 11px 11px;
@@ -6570,9 +6570,9 @@ select {
 }
 
 
-/* ==========================================================
+/* 
    MOBILE BOTTOM NAVIGATION
-   ========================================================== */
+    */
 .mobile-bottom-nav {
   display: none;
   position: fixed;
@@ -6889,14 +6889,14 @@ select {
 }
 
 
-/* ==========================================================
+/* 
    COMPACT MOBILE — Samsung S25 Ultra / modern phones
    Target: 375px–430px viewport, high DPI screens
-   ========================================================== */
+    */
 
 @media (max-width: 768px) {
 
-  /* ---------- Typography scale-down ---------- */
+  /*  Typography scale-down  */
   html {
     font-size: 14px;
   }
@@ -6923,7 +6923,7 @@ select {
     font-size: 14px !important;
   }
 
-  /* ---------- Spacing ---------- */
+  /*  Spacing  */
   .page-container {
     padding-left: 10px !important;
     padding-right: 10px !important;
@@ -6936,7 +6936,7 @@ select {
     margin-bottom: 12px !important;
   }
 
-  /* ---------- Cards compact ---------- */
+  /*  Cards compact  */
   .market-card,
   .order-card-modern {
     border-radius: 14px !important;
@@ -6996,7 +6996,7 @@ select {
     padding: 3px 7px !important;
   }
 
-  /* ---------- Grid: 2 columns on phone ---------- */
+  /*  Grid: 2 columns on phone  */
   .market-grid,
   .orders-grid,
   .my-grid {
@@ -7010,7 +7010,7 @@ select {
     gap: 10px !important;
   }
 
-  /* ---------- Header compact ---------- */
+  /*  Header compact  */
   .site-header {
     height: 52px !important;
   }
@@ -7049,7 +7049,7 @@ select {
     padding: 4px 6px !important;
   }
 
-  /* ---------- Bottom nav compact ---------- */
+  /*  Bottom nav compact  */
   .mobile-bottom-nav {
     padding: 4px 0 max(4px, env(safe-area-inset-bottom)) !important;
   }
@@ -7066,13 +7066,13 @@ select {
     padding: 4px 2px !important;
   }
 
-  /* ---------- Auth card ---------- */
+  /*  Auth card  */
   .auth-card {
     padding: 20px 14px !important;
     border-radius: 20px !important;
   }
 
-  /* ---------- Detail page ---------- */
+  /*  Detail page  */
   .detail-page {
     padding-top: 12px !important;
   }
@@ -7081,7 +7081,7 @@ select {
     font-size: 18px !important;
   }
 
-  /* ---------- Profile ---------- */
+  /*  Profile  */
   .profile-cover-section {
     height: auto !important;
   }
@@ -7095,7 +7095,7 @@ select {
     font-size: 18px !important;
   }
 
-  /* ---------- Buttons ---------- */
+  /*  Buttons  */
   .btn-primary,
   button[type="submit"],
   .header-main-btn {
@@ -7103,13 +7103,13 @@ select {
     padding: 10px 16px !important;
   }
 
-  /* ---------- Inputs ---------- */
+  /*  Inputs  */
   input, select, textarea {
     font-size: 14px !important;
     padding: 10px 12px !important;
   }
 
-  /* ---------- Landing page ---------- */
+  /*  Landing page  */
   .category-grid,
   .service-grid,
   .benefits-grid {
@@ -7140,7 +7140,7 @@ select {
     font-size: 12px !important;
   }
 
-  /* ---------- Pagination ---------- */
+  /*  Pagination  */
   .pagination button {
     min-width: 32px !important;
     height: 32px !important;
@@ -7148,7 +7148,7 @@ select {
     padding: 0 8px !important;
   }
 
-  /* ---------- Stats on landing ---------- */
+  /*  Stats on landing  */
   .stat-card {
     padding: 14px 12px !important;
   }
@@ -7161,31 +7161,31 @@ select {
     font-size: 12px !important;
   }
 
-  /* ---------- Notification badge ---------- */
+  /*  Notification badge  */
   .mobile-notif-badge {
     min-width: 16px !important;
     height: 16px !important;
     font-size: 10px !important;
   }
 
-  /* ---------- Section head link ---------- */
+  /*  Section head link  */
   .section-head a,
   .section-head-inline a {
     font-size: 12px !important;
   }
 
-  /* ---------- Step/benefit subtitle ---------- */
+  /*  Step/benefit subtitle  */
   .step-subtitle,
   .benefit-subtitle {
     font-size: 11px !important;
   }
 
-  /* ---------- Review card ---------- */
+  /*  Review card  */
   .review-card {
     padding: 12px !important;
   }
 
-  /* ---------- Mini list (sidebar) ---------- */
+  /*  Mini list (sidebar)  */
   .mini-item {
     padding: 10px 8px !important;
     gap: 10px !important;
@@ -7196,12 +7196,12 @@ select {
     height: 44px !important;
   }
 
-  /* ---------- Messages ---------- */
+  /*  Messages  */
   .chat-input-area {
     padding: 8px 10px !important;
   }
 
-  /* ---------- Filters ---------- */
+  /*  Filters  */
   .services-filters {
     gap: 8px !important;
   }
@@ -7235,9 +7235,9 @@ select {
 }
 
 
-/* ============================================================
+/* 
    LANDING PAGE MOBILE — override inline styles via classes
-   ============================================================ */
+    */
 
 .landing-hero {
   display: grid;
@@ -7514,9 +7514,9 @@ select {
 }
 
 
-/* ============================================================
+/* 
    NOTIFICATION PANEL — right drawer (desktop) / bottom sheet (mobile)
-   ============================================================ */
+    */
 
 /* Overlay backdrop */
 .notif-overlay {
@@ -7568,7 +7568,7 @@ select {
   display: none;
 }
 
-/* ====== MOBILE: bottom sheet ====== */
+/*  MOBILE: bottom sheet  */
 @media (max-width: 768px) {
   /* Overlay: align panel to bottom */
   .notif-overlay {
@@ -7609,9 +7609,9 @@ select {
 }
 
 
-/* ============================================================
+/* 
    SERVICES & ORDERS MOBILE — cards + filters + detail page
-   ============================================================ */
+    */
 
 /* ── FILTERS BAR on mobile ── */
 @media (max-width: 768px) {

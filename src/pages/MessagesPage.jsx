@@ -110,7 +110,7 @@ export default function MessagesPage() {
           if (!item) return
           const ownerId = item.user_id
           if (!ownerId) return
-          if (user.id === ownerId) return // Cannot guess the other participant just from jobId/serviceId
+          if (user.id === ownerId) return // Нельзя определить собеседника только по jobId/serviceId
           conversation = await findOrCreateConversation({
             jobId: jobId || null, serviceId: serviceId || null,
             customerId: jobId ? ownerId : user.id,
@@ -295,9 +295,9 @@ export default function MessagesPage() {
   return (
     <div className="messages-layout-container">
 
-      {/* ─── LEFT: Conversation List ─── */}
+      {/* ЛЕВАЯ ЧАСТЬ: Список диалогов */}
       <div className={`messages-sidebar ${activeConversation ? 'hidden-on-mobile' : ''}`}>
-        {/* Header */}
+        {/* Шапка */}
         <div style={{ padding: '20px 16px 14px', borderBottom: '1px solid var(--line)', flexShrink: 0 }}>
           <h2 style={{ margin: 0, fontSize: '18px', fontWeight: 700 }}>{t('nav.messages')}</h2>
         </div>
@@ -385,7 +385,7 @@ export default function MessagesPage() {
         </div>
       </div>
 
-      {/* ─── RIGHT: Chat Area ─── */}
+      {/* ПРАВАЯ ЧАСТЬ: Область чата */}
       <div className={`messages-chat-area ${!activeConversation ? 'hidden-on-mobile' : ''}`}>
 
         {!activeConversation ? (
@@ -396,7 +396,7 @@ export default function MessagesPage() {
           </div>
         ) : (
           <>
-            {/* ── Chat Header ── */}
+            {/* Шапка чата */}
             <div style={{ padding: '12px 20px', borderBottom: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'var(--surface)', flexShrink: 0, gap: '12px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <button 
@@ -423,7 +423,7 @@ export default function MessagesPage() {
               </div>
             </div>
 
-            {/* ── Messages ── */}
+            {/* Сообщения */}
             <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
               {loadingMessages ? (
                 <div style={{ margin: 'auto', color: 'var(--muted)', fontSize: '14px' }}>{t('common.loading')}</div>
@@ -453,17 +453,17 @@ export default function MessagesPage() {
 
                         <div style={{ display: 'flex', justifyContent: isMine ? 'flex-end' : 'flex-start', marginBottom: '4px', gap: '6px', alignItems: 'flex-end' }}>
 
-                          {/* other user avatar */}
+                          {/* аватар собеседника */}
                           {!isMine && (
                             <div style={{ width: 30, height: 30, borderRadius: '50%', background: 'var(--gradient-primary)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, flexShrink: 0, overflow: 'hidden' }}>
                               {avatarEl(otherUser, 30)}
                             </div>
                           )}
 
-                          {/* Bubble */}
+                          {/* Пузырь сообщения */}
                           <div style={{ maxWidth: '65%', position: 'relative' }}>
 
-                            {/* 3-dot menu button for own messages */}
+                            {/* кнопка меню для своих сообщений */}
                             {isMine && (
                               <div style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', right: '100%', marginRight: '4px' }}>
                                 <button
@@ -534,11 +534,11 @@ export default function MessagesPage() {
               <div ref={bottomRef} />
             </div>
 
-            {/* ── Input Area ── */}
+            {/* Область ввода */}
             <div style={{ flexShrink: 0, background: 'var(--surface)', borderTop: '1px solid var(--line)' }}>
               <div style={{ padding: '10px 16px' }}>
 
-              {/* Attached files preview */}
+              {/* Предпросмотр прикрепленных файлов */}
               {(attachedImages.length > 0 || attachedDocs.length > 0) && (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '8px' }}>
                   {attachedImages.map((file, i) => {
@@ -565,7 +565,7 @@ export default function MessagesPage() {
                 </div>
               )}
 
-              {/* Error message */}
+              {/* Сообщение об ошибке */}
               {uploadError && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 12px', background: '#fdf0f0', border: '1px solid #f5c6c6', borderRadius: '8px', marginBottom: '8px', fontSize: '13px', color: '#e74c3c' }}>
                   <span>⚠️</span> {uploadError}
@@ -573,7 +573,7 @@ export default function MessagesPage() {
                 </div>
               )}
 
-              {/* Edit mode banner */}
+              {/* Плашка режима редактирования */}
               {editingMessageId && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 10px', background: 'rgba(99,102,241,0.08)', borderRadius: '8px', marginBottom: '8px', fontSize: '13px', color: 'var(--primary)' }}>
                   {t('messages.editing')}
@@ -581,13 +581,13 @@ export default function MessagesPage() {
                 </div>
               )}
 
-              {/* Input row */}
+              {/* Форма ввода */}
               <form onSubmit={editingMessageId ? handleEditSubmit : handleSubmit} style={{ display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
 
                 <input id="image-input" ref={imageInputRef} type="file" accept="image/*" multiple style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', borderWidth: 0 }} onChange={handleImageAttach} />
                 <input id="doc-input" ref={docInputRef} type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.zip,.rar" multiple style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', borderWidth: 0 }} onChange={handleDocAttach} />
 
-                {/* Action buttons (Attachment + Emoji) */}
+                {/* Кнопки действий (Вложения + Смайлики) */}
                 <div style={{ display: 'flex', gap: '4px', alignItems: 'flex-end', flexShrink: 0 }}>
                   {!editingMessageId && (
                     <div className="attach-zone" style={{ position: 'relative' }}>
@@ -631,7 +631,7 @@ export default function MessagesPage() {
                   </div>
                 </div>
 
-                {/* Textarea */}
+                {/* Текстовое поле */}
                 <textarea
                   ref={textareaRef}
                   placeholder={t('messages.writePlaceholder')}
@@ -661,7 +661,7 @@ export default function MessagesPage() {
                   }}
                 />
 
-                {/* Send button */}
+                {/* Кнопка отправки */}
                 <button
                   type="submit"
                   disabled={sending || uploading || (!text.trim() && attachedImages.length === 0 && attachedDocs.length === 0)}
@@ -700,7 +700,7 @@ export default function MessagesPage() {
           </>
         )}
       </div>
-      {/* Fullscreen Image Modal */}
+      {/* Модальное окно для полноэкранного просмотра картинок */}
       {fullscreenImage && (
         <div 
           onClick={() => setFullscreenImage(null)}
