@@ -266,7 +266,7 @@ export default function ReviewsPage() {
       setAlreadyReviewed(true)
       setCanLeaveReview(false)
       
-      // Create notification for the user receiving the review
+      // Создаем уведомление для пользователя, получившего отзыв
       try {
         let reviewerName = user.user_metadata?.full_name || t('masters.noName')
         try {

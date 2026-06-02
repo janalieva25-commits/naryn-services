@@ -119,7 +119,7 @@ export default function DashboardPage() {
 
   return (
     <div className="dashboard-page">
-      {/* Mobile top bar to open menu */}
+      {/* Верхняя панель на мобильных для открытия меню */}
       <div className="dashboard-mobile-header">
         <button className="dashboard-menu-btn" onClick={() => setIsSidebarOpen(true)}>
           ☰ Меню кабинета
@@ -127,7 +127,7 @@ export default function DashboardPage() {
       </div>
 
       <div className="dashboard-layout">
-        {/* Overlay for mobile */}
+        {/* Затемнение фона на мобильных */}
         <div 
           className={isSidebarOpen ? 'dashboard-overlay open' : 'dashboard-overlay'} 
           onClick={() => setIsSidebarOpen(false)}

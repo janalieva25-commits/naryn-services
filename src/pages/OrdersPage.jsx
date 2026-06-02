@@ -68,7 +68,7 @@ function getTranslationKey(cat) {
   if (!cat) return 'other';
   const c = cat.toLowerCase().trim();
   
-  // Requests/Orders
+  // Заявки/Заказы
   if (c === 'needplumber' || c === 'нужен сантехник') return 'needPlumber';
   if (c === 'needelectrician' || c === 'нужен электрик') return 'needElectrician';
   if (c === 'needcleaning' || c === 'нужна уборка') return 'needCleaning';
@@ -81,7 +81,7 @@ function getTranslationKey(cat) {
   if (c === 'needbeauty' || c === 'нужны услуги красоты и здоровья') return 'needBeauty';
   if (c === 'needhandyman' || c === 'нужен бытовой ремонт') return 'needHandyman';
 
-  // Base/Services
+  // База/Услуги
   if (c === 'plumbing' || c === 'сантехника') return 'plumbing';
   if (c === 'electrical' || c === 'электрика') return 'electrical';
   if (c === 'cleaning' || c === 'уборка') return 'cleaning';

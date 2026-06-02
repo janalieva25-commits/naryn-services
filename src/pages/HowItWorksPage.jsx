@@ -53,7 +53,7 @@ export default function HowItWorksPage() {
         </p>
       </div>
 
-      {/* Steps */}
+      {/* Шаги */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '40px' }}>
         {steps.map((step, i) => (
           <div key={i} style={{
@@ -87,7 +87,7 @@ export default function HowItWorksPage() {
         ))}
       </div>
 
-      {/* For clients and specialists */}
+      {/* Для заказчиков и специалистов */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '32px' }}>
         {[
           { title: t('howPage.clientsTitle'), items: forClients },

@@ -111,7 +111,7 @@ export default function LandingPage() {
       try {
         setLoading(true)
 
-        // Live counts for stats
+        // Живые счетчики для статистики
         const [
           specCountRes,
           servCountRes,
@@ -231,7 +231,7 @@ export default function LandingPage() {
             {t('landing.desc')}
           </p>
 
-          {/* Search */}
+          {/* Поиск */}
           <form className="landing-search-form" onSubmit={handleSearchSubmit}>
             <div style={{ flex: 1, position: 'relative', display: 'flex', alignItems: 'center' }}>
               <Search size={18} color="var(--text-muted)" style={{ position: 'absolute', left: '18px' }} />
@@ -263,7 +263,7 @@ export default function LandingPage() {
             >{t('landing.searchBtn')}</button>
           </form>
 
-          {/* Buttons */}
+          {/* Кнопки */}
           <div className="landing-hero-btns">
             <Link to="/services" style={{
               height: '48px', padding: '0 24px', borderRadius: '999px',
@@ -286,7 +286,7 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Right stats */}
+        {/* Правая часть со статистикой */}
         <div className="landing-stats-grid">
           <div style={{
             gridColumn: '1 / -1', padding: '32px 28px', borderRadius: '24px',

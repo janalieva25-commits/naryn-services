@@ -225,7 +225,7 @@ export async function clearConversation(conversationId) {
 }
 
 export async function deleteConversation(conversationId) {
-  // First clear all messages, then delete the conversation itself
+  // Сначала удаляем все сообщения, затем удаляем сам диалог
   await clearConversation(conversationId)
 
   const { error } = await supabase

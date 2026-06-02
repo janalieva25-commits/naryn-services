@@ -269,7 +269,7 @@ export default function MessagesPage() {
     } else {
       setText(prev => prev + emojiData.emoji)
     }
-    // Do not focus the textarea here, otherwise the native OS keyboard will pop up and ruin the layout
+    // Не фокусируем текстовое поле здесь, иначе нативная клавиатура ОС всплывет и сломает верстку
   }
 
   const formatTime = (d) => {
@@ -302,7 +302,7 @@ export default function MessagesPage() {
           <h2 style={{ margin: 0, fontSize: '18px', fontWeight: 700 }}>{t('nav.messages')}</h2>
         </div>
 
-        {/* List */}
+        {/* Список */}
         <div style={{ flex: 1, overflowY: 'auto' }}>
           {loadingList ? (
             <p style={{ padding: '20px', color: 'var(--muted)', fontSize: '14px' }}>{t('common.loading')}</p>
@@ -491,7 +491,7 @@ export default function MessagesPage() {
 
                               {msg.body && <p style={{ margin: 0, whiteSpace: 'pre-wrap' }}>{msg.body}</p>}
 
-                              {/* Images */}
+                              {/* Картинки */}
                               {msg.image_urls?.length > 0 && (
                                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: msg.body ? '8px' : 0 }}>
                                   {msg.image_urls.map((url, i) => (
@@ -506,7 +506,7 @@ export default function MessagesPage() {
                                 </div>
                               )}
 
-                              {/* Documents */}
+                              {/* Документы */}
                               {msg.document_urls?.length > 0 && (
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: msg.body ? '8px' : 0 }}>
                                   {msg.document_urls.map((url, i) => (
@@ -517,7 +517,7 @@ export default function MessagesPage() {
                                 </div>
                               )}
 
-                              {/* Time row */}
+                              {/* Строка со временем */}
                               <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginTop: '3px', justifyContent: 'flex-end' }}>
                                 {msg.is_edited && <span style={{ fontSize: '11px', opacity: 0.65, fontStyle: 'italic' }}>{t('messages.edited')}</span>}
                                 <span style={{ fontSize: '11px', opacity: isMine ? 0.75 : 0.5 }}>{formatTime(msg.created_at)}</span>
