@@ -3623,7 +3623,7 @@ select {
 
 
 
-/* MESSAGES PAGE */
+/* СТРАНИЦА СООБЩЕНИЙ */
 
 .messages-page {
   width: 100%;
@@ -6343,7 +6343,7 @@ select {
   color: var(--muted);
 }
 
-/* COMFORT STYLES FOR LANDING PAGE (MARKETPLACE) */
+/* УДОБНЫЕ СТИЛИ ДЛЯ ГЛАВНОЙ СТРАНИЦЫ (МАРКЕТПЛЕЙС) */
 .comfort-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -6520,7 +6520,7 @@ select {
 }
 
 
-/* Card footer buttons — universal purple gradient style */
+/* Кнопки карточек - универсальный фиолетовый градиент */
 .market-card-footer,
 .order-card-footer {
   padding: 0 11px 11px;
@@ -6564,7 +6564,7 @@ select {
 }
 
 
-/* MOBILE BOTTOM NAVIGATION */
+/* МОБИЛЬНАЯ НИЖНЯЯ НАВИГАЦИЯ */
 .mobile-bottom-nav {
   display: none;
   position: fixed;
@@ -6881,8 +6881,7 @@ select {
 }
 
 
-/* COMPACT MOBILE — Samsung S25 Ultra / modern phones
-   Target: 375px–430px viewport, high DPI screens */
+/* КОМПАКТНЫЙ МОБИЛЬНЫЙ — Samsung S25 Ultra / современные телефоны */
 
 @media (max-width: 768px) {
 
@@ -7225,7 +7224,7 @@ select {
 }
 
 
-/* LANDING PAGE MOBILE — override inline styles via classes */
+/* МОБИЛЬНАЯ ГЛАВНАЯ СТРАНИЦА - переопределение встроенных стилей */
 
 .landing-hero {
   display: grid;
@@ -7502,7 +7501,7 @@ select {
 }
 
 
-/* NOTIFICATION PANEL — right drawer (desktop) / bottom sheet (mobile) */
+/* ПАНЕЛЬ УВЕДОМЛЕНИЙ - справа (ПК) / снизу (моб) */
 
 /* Фон-затемнение */
 .notif-overlay {
@@ -7595,7 +7594,7 @@ select {
 }
 
 
-/* SERVICES & ORDERS MOBILE — cards + filters + detail page */
+/* УСЛУГИ И ЗАКАЗЫ НА МОБИЛЬНЫХ - карточки + фильтры + детали */
 
 /* Фильтры на мобильных */
 @media (max-width: 768px) {
@@ -7853,7 +7852,7 @@ select {
 }
 
 
-/* MOBILE MENU */
+/* МОБИЛЬНОЕ МЕНЮ */
 
 .dashboard-mobile-header {
   display: none;
@@ -7999,7 +7998,7 @@ select {
 }
 
 
-/* MESSAGES */
+/* СООБЩЕНИЯ */
 
 .messages-layout-container {
   height: calc(100vh - 120px);
