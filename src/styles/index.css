@@ -63,7 +63,7 @@ body,
 body {
   font-family: Inter, system-ui, sans-serif;
   color: var(--text);
-  /* removed background transition since it doesn't work for gradients */
+  /* Удалена анимация фона */
 }
 
 a {
@@ -1989,7 +1989,7 @@ select {
   min-height: 600px;
 }
 
-/* ─── Conversation list panel ─── */
+/* Панель списка диалогов */
 .chat-list-panel {
   display: flex;
   flex-direction: column;
@@ -2074,7 +2074,7 @@ select {
   text-overflow: ellipsis;
 }
 
-/* ─── Main chat shell ─── */
+/* Главная оболочка чата */
 .modern-chat-shell {
   display: flex;
   flex-direction: column;
@@ -2082,7 +2082,7 @@ select {
   padding: 0 !important;
 }
 
-/* ─── Chat header ─── */
+/* Шапка чата */
 .modern-chat-header {
   display: flex;
   align-items: center;
@@ -2146,7 +2146,7 @@ select {
   text-decoration: none;
 }
 
-/* ─── Chat body (messages) ─── */
+/* Тело чата (сообщения) */
 .modern-chat-body {
   flex: 1;
   overflow-y: auto;
@@ -2171,7 +2171,7 @@ select {
   flex-direction: row;
 }
 
-/* ─── Chat bubbles ─── */
+/* Пузыри чата */
 .chat-bubble {
   max-width: 68%;
   padding: 10px 14px;
@@ -2207,7 +2207,7 @@ select {
   border-radius: 18px 18px 18px 4px;
 }
 
-/* ─── Chat empty state ─── */
+/* Пустое состояние чата */
 .chat-empty {
   margin: auto;
   text-align: center;
@@ -2234,7 +2234,7 @@ select {
   max-width: 260px;
 }
 
-/* ─── Responsive ─── */
+/* Адаптивность */
 @media (max-width: 768px) {
   .modern-messages-layout {
     grid-template-columns: 1fr;
@@ -3623,9 +3623,7 @@ select {
 
 
 
-/* 
-   MESSAGES PAGE
- */
+/* MESSAGES PAGE */
 
 .messages-page {
   width: 100%;
@@ -3962,7 +3960,7 @@ select {
   color: #8a725f;
 }
 
-/* Dark mode */
+/* Темная тема */
 .dark .chat-conversation-item {
   background: linear-gradient(135deg, rgba(31, 27, 24, 0.92), rgba(25, 22, 20, 0.88));
   border-color: rgba(255, 255, 255, 0.08);
@@ -4036,7 +4034,7 @@ select {
   color: #9f8d7d;
 }
 
-/* Responsive */
+/* Адаптивность */
 @media (max-width: 1024px) {
   .messages-layout.modern-messages-layout {
     grid-template-columns: 300px minmax(0, 1fr);
@@ -4728,7 +4726,7 @@ select {
 
 
 
-/*  FINAL COMPACT UNIVERSAL CARDS  */
+/* ФИНАЛЬНЫЕ КОМПАКТНЫЕ УНИВЕРСАЛЬНЫЕ КАРТОЧКИ */
 
 .my-grid,
 .orders-grid {
@@ -5250,7 +5248,7 @@ select {
 
 
 
-/*  UNIFIED OUTER PAGE SHELL  */
+/* ЕДИНАЯ ВНЕШНЯЯ ОБОЛОЧКА СТРАНИЦ */
 
 .services-page,
 .orders-page,
@@ -5346,7 +5344,7 @@ select {
   margin-top: 0;
 }
 
-/* Detail page shell */
+/* Оболочка страницы деталей */
 .detail-page {
   padding-top: 24px;
 }
@@ -5709,7 +5707,7 @@ select {
 
 
 
-/* Home page */
+/* Главная страница */
 .home-page {
   width: 100%;
 }
@@ -5780,7 +5778,7 @@ select {
   color: inherit;
 }
 
-/* Masters page */
+/* Страница мастеров */
 .directory-page {
   width: 100%;
   max-width: 1280px;
@@ -5857,7 +5855,7 @@ select {
   cursor: pointer;
 }
 
-/* Profile page */
+/* Страница профиля */
 .profile-page {
   width: 100%;
   max-width: 1280px;
@@ -5976,7 +5974,7 @@ select {
   width: 100%;
 }
 
-/* Settings page */
+/* Страница настроек */
 .settings-page .section-card {
   overflow: visible;
 }
@@ -6008,7 +6006,7 @@ select {
   font-weight: 700;
 }
 
-/* Reviews page */
+/* Страница отзывов */
 .review-summary {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -6070,7 +6068,7 @@ select {
   margin: 0;
 }
 
-/* Common polish for new links/buttons inside cards */
+/* Общие улучшения для новых ссылок/кнопок внутри карточек */
 .profile-menu a,
 .market-card a,
 .order-card-modern a,
@@ -6087,7 +6085,7 @@ select {
   opacity: 0.92;
 }
 
-/* Dark mode */
+/* Темная тема */
 .dark .profile-header-bio,
 .dark .experience-block,
 .dark .review-summary p,
@@ -6127,7 +6125,7 @@ select {
   border-color: rgba(255, 255, 255, 0.06);
 }
 
-/* Responsive */
+/* Адаптивность */
 @media (max-width: 1100px) {
   .directory-page,
   .profile-page {
@@ -6194,7 +6192,7 @@ select {
   }
 }
 
-/* Glassmorphism applied globally to cards */
+/* Эффект стекла применен ко всем карточкам */
 .section-card,
 .market-card,
 .market-card-compact,
@@ -6225,7 +6223,7 @@ select {
   border: 1px solid var(--line);
 }
 
-/* NEW PROFILE STYLES */
+/* НОВЫЕ СТИЛИ ПРОФИЛЯ */
 .profile-cover-section {
   display: flex;
   flex-direction: column;
@@ -6345,9 +6343,7 @@ select {
   color: var(--muted);
 }
 
-/* 
-   COMFORT STYLES FOR LANDING PAGE (MARKETPLACE)
-    */
+/* COMFORT STYLES FOR LANDING PAGE (MARKETPLACE) */
 .comfort-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -6378,7 +6374,7 @@ select {
 .comfort-image-container {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  padding-top: 56.25%; /* Соотношение сторон 16:9 */
   background: var(--surface-soft);
   border-bottom: 1px solid var(--line);
 }
@@ -6490,7 +6486,7 @@ select {
 .market-placeholder-title { color: var(--text); font-weight: bold; }
 .market-placeholder-subtitle { color: var(--muted); }
 
-/* Dark mode styles for cards */
+/* Стили темной темы для карточек */
 .dark .market-body h3,
 .dark .order-card-body h3 {
   color: #f8fafc;
@@ -6524,9 +6520,7 @@ select {
 }
 
 
-/* 
-   Card footer buttons — universal purple gradient style
-    */
+/* Card footer buttons — universal purple gradient style */
 .market-card-footer,
 .order-card-footer {
   padding: 0 11px 11px;
@@ -6556,23 +6550,21 @@ select {
   opacity: 1 !important;
 }
 
-/* Remove old brown badge bg */
+/* Удален старый коричневый фон значка */
 .dark .market-category-badge {
   background: rgba(30, 27, 75, 0.85);
   color: var(--primary);
   border: 1px solid rgba(129,140,248,0.2);
 }
 
-/* Fix market-meta-left span brown color */
+/* Исправлен коричневый цвет слева */
 .market-meta-left span,
 .market-meta-right span {
   color: var(--muted);
 }
 
 
-/* 
-   MOBILE BOTTOM NAVIGATION
-    */
+/* MOBILE BOTTOM NAVIGATION */
 .mobile-bottom-nav {
   display: none;
   position: fixed;
@@ -6647,17 +6639,17 @@ select {
     display: flex;
   }
 
-  /* Push page content above bottom nav */
+  /* Поднять контент страницы над нижней навигацией */
   .main-with-mobile-nav {
     padding-bottom: calc(72px + env(safe-area-inset-bottom));
   }
 
-  /* Hide desktop footer on mobile */
+  /* Скрыть подвал ПК на мобильных */
   .site-footer {
     display: none;
   }
 
-  /* Header compact on mobile */
+  /* Компактная шапка на мобильных */
   .site-header {
     padding: 0 12px;
     height: 56px;
@@ -6672,19 +6664,19 @@ select {
     display: none !important;
   }
 
-  /* Notification badge orange fix */
+  /* Исправление оранжевого значка уведомлений */
   .notification-badge {
     background: var(--primary) !important;
   }
 
-  /* Content layout adjustments */
+  /* Корректировки макета контента */
   .page-container {
     padding-left: 12px;
     padding-right: 12px;
     padding-top: 16px;
   }
 
-  /* Content grid (HomePage) → single column */
+  /* Сетка контента (Главная) в одну колонку */
   .content-grid {
     grid-template-columns: 1fr !important;
     gap: 16px;
@@ -6694,7 +6686,7 @@ select {
     display: contents;
   }
 
-  /* Hero section */
+  /* Главный блок */
   .hero-content,
   .hero-shell {
     grid-template-columns: 1fr;
@@ -6706,19 +6698,19 @@ select {
     flex-wrap: wrap;
   }
 
-  /* Cards grid */
+  /* Сетка карточек */
   .cards-row {
     grid-template-columns: 1fr 1fr !important;
     gap: 12px;
   }
 
-  /* Section card */
+  /* Карточка секции */
   .section-card {
     border-radius: 18px;
     padding: 16px;
   }
 
-  /* Services / Orders grid: 2 columns → 1 on very small */
+  /* Сетка Услуг / Заказов: 2 колонки -> 1 на очень маленьких */
   .market-grid,
   .orders-grid,
   .my-grid {
@@ -6726,28 +6718,28 @@ select {
     gap: 12px;
   }
 
-  /* Masters page */
+  /* Страница мастеров */
   .masters-grid {
     grid-template-columns: 1fr 1fr !important;
     gap: 12px;
   }
 
-  /* Profile layout */
+  /* Макет профиля */
   .profile-page {
     grid-template-columns: 1fr !important;
   }
 
-  /* Detail layout */
+  /* Макет деталей */
   .detail-layout {
     grid-template-columns: 1fr !important;
   }
 
-  /* Auth card */
+  /* Карточка авторизации */
   .auth-card {
     padding: 24px 16px;
   }
 
-  /* Dashboard layout */
+  /* Макет панели управления */
   .dashboard-layout {
     grid-template-columns: 1fr !important;
   }
@@ -6756,12 +6748,12 @@ select {
     grid-template-columns: 1fr 1fr !important;
   }
 
-  /* Messages layout */
+  /* Макет сообщений */
   .modern-messages-layout {
     grid-template-columns: 1fr !important;
   }
 
-  /* Landing page */
+  /* Главная страница */
   .category-grid,
   .service-grid,
   .benefits-grid {
@@ -6773,7 +6765,7 @@ select {
     grid-template-columns: 1fr;
   }
 
-  /* Services/Orders page sidebar */
+  /* Боковая панель страницы Услуги/Заказы */
   .services-page,
   .orders-page,
   .directory-page {
@@ -6781,7 +6773,7 @@ select {
   }
 
 
-  /* Filter bar visible on mobile */
+  /* Панель фильтров видна на мобильных */
   .services-filters {
     flex-direction: column;
     gap: 8px;
@@ -6792,28 +6784,28 @@ select {
     width: 100%;
   }
 
-  /* Reviews layout */
+  /* Макет отзывов */
   .reviews-layout {
     grid-template-columns: 1fr !important;
   }
 
-  /* Settings grid */
+  /* Сетка настроек */
   .settings-grid {
     grid-template-columns: 1fr !important;
   }
 
-  /* Offer row */
+  /* Строка предложения */
   .offer-row {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  /* Chat window */
+  /* Окно чата */
   .chat-window {
     min-height: 60vh;
   }
 
-  /* Pagination */
+  /* Пагинация */
   .pagination {
     flex-wrap: wrap;
     gap: 6px;
@@ -6825,7 +6817,7 @@ select {
     font-size: 13px;
   }
 
-  /* Section head */
+  /* Заголовок секции */
   .section-head {
     flex-direction: row;
     gap: 8px;
@@ -6835,7 +6827,7 @@ select {
     font-size: 18px;
   }
 
-  /* Profile header */
+  /* Шапка профиля */
   .profile-header-card {
     text-align: center;
   }
@@ -6849,14 +6841,14 @@ select {
     height: 80px !important;
   }
 
-  /* Create / Edit form */
+  /* Форма создания / редактирования */
   .create-layout {
     grid-template-columns: 1fr !important;
   }
 }
 
 @media (max-width: 480px) {
-  /* Very small screens — single column cards */
+  /* Очень маленькие экраны - карточки в одну колонку */
   .market-grid,
   .orders-grid,
   .my-grid,
@@ -6889,14 +6881,12 @@ select {
 }
 
 
-/* 
-   COMPACT MOBILE — Samsung S25 Ultra / modern phones
-   Target: 375px–430px viewport, high DPI screens
-    */
+/* COMPACT MOBILE — Samsung S25 Ultra / modern phones
+   Target: 375px–430px viewport, high DPI screens */
 
 @media (max-width: 768px) {
 
-  /*  Typography scale-down  */
+  /* Уменьшение типографики */
   html {
     font-size: 14px;
   }
@@ -6905,13 +6895,13 @@ select {
   h2 { font-size: clamp(16px, 5vw, 20px) !important; }
   h3 { font-size: clamp(14px, 4.5vw, 17px) !important; }
 
-  /* Section headings */
+  /* Заголовки секций */
   .section-head h2,
   .profile-section h2 {
     font-size: 16px !important;
   }
 
-  /* Hero large text */
+  /* Большой текст главного блока */
   .hero-title,
   .landing-title {
     font-size: clamp(22px, 7vw, 30px) !important;
@@ -6923,7 +6913,7 @@ select {
     font-size: 14px !important;
   }
 
-  /*  Spacing  */
+  /* Отступы */
   .page-container {
     padding-left: 10px !important;
     padding-right: 10px !important;
@@ -6936,7 +6926,7 @@ select {
     margin-bottom: 12px !important;
   }
 
-  /*  Cards compact  */
+  /* Компактные карточки */
   .market-card,
   .order-card-modern {
     border-radius: 14px !important;
@@ -6996,7 +6986,7 @@ select {
     padding: 3px 7px !important;
   }
 
-  /*  Grid: 2 columns on phone  */
+  /* Сетка: 2 колонки на телефоне */
   .market-grid,
   .orders-grid,
   .my-grid {
@@ -7004,13 +6994,13 @@ select {
     gap: 10px !important;
   }
 
-  /* Masters grid */
+  /* Сетка мастеров */
   div[style*="repeat(auto-fill, minmax(240px"] {
     grid-template-columns: 1fr 1fr !important;
     gap: 10px !important;
   }
 
-  /*  Header compact  */
+  /* Компактная шапка */
   .site-header {
     height: 52px !important;
   }
@@ -7049,7 +7039,7 @@ select {
     padding: 4px 6px !important;
   }
 
-  /*  Bottom nav compact  */
+  /* Компактная нижняя навигация */
   .mobile-bottom-nav {
     padding: 4px 0 max(4px, env(safe-area-inset-bottom)) !important;
   }
@@ -7066,13 +7056,13 @@ select {
     padding: 4px 2px !important;
   }
 
-  /*  Auth card  */
+  /* Карточка авторизации */
   .auth-card {
     padding: 20px 14px !important;
     border-radius: 20px !important;
   }
 
-  /*  Detail page  */
+  /* Страница деталей */
   .detail-page {
     padding-top: 12px !important;
   }
@@ -7081,7 +7071,7 @@ select {
     font-size: 18px !important;
   }
 
-  /*  Profile  */
+  /* Профиль */
   .profile-cover-section {
     height: auto !important;
   }
@@ -7095,7 +7085,7 @@ select {
     font-size: 18px !important;
   }
 
-  /*  Buttons  */
+  /* Кнопки */
   .btn-primary,
   button[type="submit"],
   .header-main-btn {
@@ -7103,13 +7093,13 @@ select {
     padding: 10px 16px !important;
   }
 
-  /*  Inputs  */
+  /* Поля ввода */
   input, select, textarea {
     font-size: 14px !important;
     padding: 10px 12px !important;
   }
 
-  /*  Landing page  */
+  /* Главная страница */
   .category-grid,
   .service-grid,
   .benefits-grid {
@@ -7140,7 +7130,7 @@ select {
     font-size: 12px !important;
   }
 
-  /*  Pagination  */
+  /* Пагинация */
   .pagination button {
     min-width: 32px !important;
     height: 32px !important;
@@ -7148,7 +7138,7 @@ select {
     padding: 0 8px !important;
   }
 
-  /*  Stats on landing  */
+  /* Статистика на главной */
   .stat-card {
     padding: 14px 12px !important;
   }
@@ -7161,31 +7151,31 @@ select {
     font-size: 12px !important;
   }
 
-  /*  Notification badge  */
+  /* Значок уведомления */
   .mobile-notif-badge {
     min-width: 16px !important;
     height: 16px !important;
     font-size: 10px !important;
   }
 
-  /*  Section head link  */
+  /* Ссылка в заголовке секции */
   .section-head a,
   .section-head-inline a {
     font-size: 12px !important;
   }
 
-  /*  Step/benefit subtitle  */
+  /* Подзаголовок шага/преимущества */
   .step-subtitle,
   .benefit-subtitle {
     font-size: 11px !important;
   }
 
-  /*  Review card  */
+  /* Карточка отзыва */
   .review-card {
     padding: 12px !important;
   }
 
-  /*  Mini list (sidebar)  */
+  /* Мини-список (боковая панель) */
   .mini-item {
     padding: 10px 8px !important;
     gap: 10px !important;
@@ -7196,12 +7186,12 @@ select {
     height: 44px !important;
   }
 
-  /*  Messages  */
+  /* Сообщения */
   .chat-input-area {
     padding: 8px 10px !important;
   }
 
-  /*  Filters  */
+  /* Фильтры */
   .services-filters {
     gap: 8px !important;
   }
@@ -7214,7 +7204,7 @@ select {
   }
 }
 
-/* Very small (iPhone SE, old Android) */
+/* Очень маленькие экраны (iPhone SE, старые Android) */
 @media (max-width: 390px) {
   .market-grid,
   .orders-grid,
@@ -7235,9 +7225,7 @@ select {
 }
 
 
-/* 
-   LANDING PAGE MOBILE — override inline styles via classes
-    */
+/* LANDING PAGE MOBILE — override inline styles via classes */
 
 .landing-hero {
   display: grid;
@@ -7305,7 +7293,7 @@ select {
 }
 
 @media (max-width: 768px) {
-  /* Hero → single column, compact */
+  /* Главный блок в одну колонку, компактный */
   .landing-hero {
     grid-template-columns: 1fr !important;
     padding: 20px 16px !important;
@@ -7313,13 +7301,13 @@ select {
     border-radius: 20px !important;
   }
 
-  /* Stats move below text, horizontal row */
+  /* Статистика под текстом в один ряд */
   .landing-stats-grid {
     grid-template-columns: 1fr 1fr !important;
     gap: 10px !important;
   }
 
-  /* Big stats card smaller */
+  /* Уменьшение большой карточки статистики */
   .landing-stats-main-card {
     padding: 18px 14px !important;
     border-radius: 16px !important;
@@ -7338,7 +7326,7 @@ select {
     font-size: 22px !important;
   }
 
-  /* Hero text */
+  /* Текст главного блока */
   .landing-hero h1 {
     font-size: clamp(22px, 6vw, 30px) !important;
     margin-bottom: 10px !important;
@@ -7350,7 +7338,7 @@ select {
     max-width: 100% !important;
   }
 
-  /* Search form stacks */
+  /* Форма поиска в столбик */
   .landing-search-form {
     flex-direction: column !important;
     max-width: 100% !important;
@@ -7369,7 +7357,7 @@ select {
     width: 100% !important;
   }
 
-  /* Action buttons */
+  /* Кнопки действий */
   .landing-hero-btns {
     gap: 8px !important;
   }
@@ -7380,7 +7368,7 @@ select {
     font-size: 13px !important;
   }
 
-  /* Categories: 3 columns on mobile */
+  /* Категории: 3 колонки на мобильных */
   .landing-categories-grid {
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 10px !important;
@@ -7402,7 +7390,7 @@ select {
     font-size: 11px !important;
   }
 
-  /* How it works: 1 column */
+  /* Как это работает: 1 колонка */
   .landing-how-grid {
     grid-template-columns: 1fr !important;
     gap: 12px !important;
@@ -7414,7 +7402,7 @@ select {
     gap: 10px !important;
   }
 
-  /* Benefits: 1 column */
+  /* Преимущества: 1 колонка */
   .landing-benefits-grid {
     grid-template-columns: 1fr !important;
     gap: 10px !important;
@@ -7426,7 +7414,7 @@ select {
     gap: 12px !important;
   }
 
-  /* Place ad banner */
+  /* Баннер размещения объявления */
   .landing-place-ad {
     flex-direction: column !important;
     padding: 20px 16px !important;
@@ -7459,7 +7447,7 @@ select {
     justify-content: center !important;
   }
 
-  /* CTA section */
+  /* Секция призыва к действию */
   .landing-cta-section {
     flex-direction: column !important;
     padding: 24px 16px !important;
@@ -7488,13 +7476,13 @@ select {
     font-size: 14px !important;
   }
 
-  /* Section titles */
+  /* Заголовки секций */
   .landing-section-title {
     font-size: 18px !important;
     margin-bottom: 14px !important;
   }
 
-  /* How it works section padding */
+  /* Отступы секции Как это работает */
   .landing-how-section {
     padding: 20px 16px !important;
     border-radius: 18px !important;
@@ -7507,18 +7495,16 @@ select {
 }
 
 @media (max-width: 420px) {
-  /* Very small: 2 columns for categories */
+  /* Очень маленькие экраны: 2 колонки для категорий */
   .landing-categories-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
 
 
-/* 
-   NOTIFICATION PANEL — right drawer (desktop) / bottom sheet (mobile)
-    */
+/* NOTIFICATION PANEL — right drawer (desktop) / bottom sheet (mobile) */
 
-/* Overlay backdrop */
+/* Фон-затемнение */
 .notif-overlay {
   position: fixed;
   inset: 0;
@@ -7527,7 +7513,7 @@ select {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.28s ease, background 0.28s ease;
-  /* Desktop: align panel to the right */
+  /* ПК: прижать панель вправо */
   display: flex;
   justify-content: flex-end;
   align-items: stretch;
@@ -7540,7 +7526,7 @@ select {
   pointer-events: auto;
 }
 
-/* Panel — desktop: right side drawer */
+/* Панель - ПК: выезжает справа */
 .notif-panel {
   width: 100%;
   max-width: 420px;
@@ -7563,21 +7549,21 @@ select {
   transform: translateX(0);
 }
 
-/* Drag handle — hidden on desktop */
+/* Ползунок перетаскивания - скрыт на ПК */
 .notif-drag-handle {
   display: none;
 }
 
-/*  MOBILE: bottom sheet  */
+/* МОБИЛЬНЫЕ: нижняя всплывающая панель */
 @media (max-width: 768px) {
-  /* Overlay: align panel to bottom */
+  /* Фон: прижать панель к низу */
   .notif-overlay {
     justify-content: stretch;
     align-items: flex-end;
     flex-direction: column;
   }
 
-  /* Panel becomes a bottom sheet */
+  /* Панель становится нижней всплывающей */
   .notif-panel {
     width: 100%;
     max-width: 100%;
@@ -7587,7 +7573,7 @@ select {
     border-top: 1px solid var(--glass-border);
     border-radius: 24px 24px 0 0;
     box-shadow: 0 -8px 40px rgba(15, 23, 42, 0.2);
-    /* Slide up from bottom */
+    /* Выезжает снизу */
     transform: translateY(100%);
     transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -7596,7 +7582,7 @@ select {
     transform: translateY(0);
   }
 
-  /* Drag handle visible on mobile */
+  /* Ползунок виден на мобильных */
   .notif-drag-handle {
     display: block;
     width: 40px;
@@ -7609,21 +7595,19 @@ select {
 }
 
 
-/* 
-   SERVICES & ORDERS MOBILE — cards + filters + detail page
-    */
+/* SERVICES & ORDERS MOBILE — cards + filters + detail page */
 
-/* ── FILTERS BAR on mobile ── */
+/* Фильтры на мобильных */
 @media (max-width: 768px) {
 
-  /* The filter block becomes visible and compact */
+  /* Блок фильтров становится видимым и компактным */
   .services-filters {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 8px !important;
   }
 
-  /* Search input spans full width */
+  /* Поле поиска на всю ширину */
   .services-filters input[type="text"],
   .services-filters input[type="search"] {
     grid-column: 1 / -1 !important;
@@ -7633,7 +7617,7 @@ select {
     border-radius: 12px !important;
   }
 
-  /* Dropdowns and price input half-width */
+  /* Выпадающие списки и цена на полширины */
   .services-filters select,
   .services-filters input[type="number"] {
     height: 40px !important;
@@ -7642,28 +7626,28 @@ select {
     border-radius: 12px !important;
   }
 
-  /* ── CARDS GRID — compact square cards ── */
-  /* Override the inline style auto-fill grid */
+  /* СЕТКА КАРТОЧЕК - компактные квадратные карточки */
+  /* Переопределение встроенного стиля сетки */
   .my-grid {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 10px !important;
   }
 
-  /* Card itself */
+  /* Сама карточка */
   .market-card {
     border-radius: 14px !important;
     overflow: hidden !important;
   }
 
-  /* Image area: square ratio */
+  /* Область фото: квадратная */
   .market-image-wrap {
     aspect-ratio: 1 / 1 !important;
     height: unset !important;
     min-height: unset !important;
   }
 
-  /* Card body compact */
+  /* Компактное тело карточки */
   .market-body {
     padding: 8px 8px 6px !important;
     gap: 3px !important;
@@ -7677,12 +7661,12 @@ select {
     line-height: 1.3 !important;
   }
 
-  /* Hide long description on mobile cards */
+  /* Скрыть длинное описание на мобильных карточках */
   .market-body > p {
     display: none !important;
   }
 
-  /* Price & district on left, author on right */
+  /* Цена и район слева, автор справа */
   .market-meta,
   .order-card-meta {
     flex-direction: row !important;
@@ -7711,7 +7695,7 @@ select {
     opacity: 0.7 !important;
   }
 
-  /* Show author on small cards (user requested to keep it) */
+  /* Показывать автора на маленьких карточках */
   .market-meta-right,
   .order-card-meta-right {
     display: flex !important;
@@ -7719,7 +7703,7 @@ select {
     transform-origin: right bottom;
   }
 
-  /* Card footer button */
+  /* Кнопка в подвале карточки */
   .market-card-footer {
     padding: 0 6px 6px !important;
   }
@@ -7730,21 +7714,21 @@ select {
     border-radius: 999px !important;
   }
 
-  /* Category badge */
+  /* Значок категории */
   .market-category-badge {
     font-size: 9px !important;
     padding: 3px 6px !important;
   }
 
-  /* ── DETAIL PAGE — hero layout on mobile ── */
+  /* СТРАНИЦА ДЕТАЛЕЙ - главный блок на мобильных */
 
-  /* Stack: image thumbnail top-right + text beside it */
+  /* Структура: миниатюра справа вверху + текст сбоку */
   .detail-hero {
     grid-template-columns: 1fr !important;
     gap: 14px !important;
   }
 
-  /* Cover becomes a small thumbnail in top-right corner */
+  /* Обложка становится миниатюрой в правом верхнем углу */
   .detail-cover {
     min-height: unset !important;
     height: 90px !important;
@@ -7760,7 +7744,7 @@ select {
     font-size: 18px !important;
   }
 
-  /* Summary fills the rest */
+  /* Описание заполняет остальное */
   .detail-summary {
     gap: 10px !important;
   }
@@ -7770,7 +7754,7 @@ select {
     line-height: 1.25 !important;
   }
 
-  /* Hide long description in hero (it's repeated in description section) */
+  /* Скрыть длинное описание в главном блоке (оно повторяется ниже) */
   .detail-lead {
     font-size: 12px !important;
     -webkit-line-clamp: 2 !important;
@@ -7780,7 +7764,7 @@ select {
     max-width: 100% !important;
   }
 
-  /* Meta grid — 3 cols that fit */
+  /* Сетка метаданных - 3 колонки */
   .detail-meta-grid {
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 8px !important;
@@ -7806,7 +7790,7 @@ select {
     padding: 4px 10px !important;
   }
 
-  /* Detail photo gallery — smaller thumbnails */
+  /* Галерея фото - уменьшенные миниатюры */
   .detail-images-grid {
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 8px !important;
@@ -7817,19 +7801,19 @@ select {
     border-radius: 12px !important;
   }
 
-  /* Sidebar: move to bottom on mobile */
+  /* Боковая панель: перенести вниз на мобильных */
   .detail-page-shell {
     grid-template-columns: 1fr !important;
   }
 
-  /* Detail hero card clearfix */
+  /* Сброс обтекания для главного блока деталей */
   .detail-hero-card::after {
     content: '';
     display: table;
     clear: both;
   }
 
-  /* Section cards smaller padding */
+  /* Меньшие отступы в карточках секций */
   .detail-section-card,
   .detail-hero-card {
     padding: 14px !important;
@@ -7840,7 +7824,7 @@ select {
     font-size: 20px !important;
   }
 
-  /* Profile card in detail */
+  /* Карточка профиля в деталях */
   .detail-profile-avatar {
     width: 44px !important;
     height: 44px !important;
@@ -7855,13 +7839,13 @@ select {
     font-size: 12px !important;
   }
 
-  /* Section head */
+  /* Заголовок секции */
   .section-head h2 {
     font-size: 16px !important;
   }
 }
 
-/* Very small phones — 1 card per row for detail */
+/* Очень маленькие телефоны - 1 карточка в ряд */
 @media (max-width: 390px) {
   .detail-images-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -7869,9 +7853,7 @@ select {
 }
 
 
-/* 
-  MOBILE MENU
- */
+/* MOBILE MENU */
 
 .dashboard-mobile-header {
   display: none;
@@ -7905,7 +7887,7 @@ select {
     display: block !important;
   }
 
-  /* Make sidebar a slide-out drawer on mobile */
+  /* Боковая панель как выезжающее меню на мобильных */
   .dashboard-sidebar {
     position: fixed !important;
     top: 0 !important;
@@ -7926,10 +7908,10 @@ select {
     height: 100% !important;
     border-radius: 0 24px 24px 0 !important;
     overflow-y: auto !important;
-    padding-top: 50px !important; /* space for close button */
+    padding-top: 50px !important; /* отступ для кнопки закрытия */
   }
 
-  /* Overlay */
+  /* Фон-затемнение */
   .dashboard-overlay {
     display: block;
     position: fixed;
@@ -7948,7 +7930,7 @@ select {
     pointer-events: auto;
   }
 
-  /* Close button */
+  /* Кнопка закрытия */
   .dashboard-close-btn {
     display: block;
     position: absolute;
@@ -7969,7 +7951,7 @@ select {
 
 
 
-/* Mobile Fabs */
+/* Мобильные плавающие кнопки */
 
 .mobile-fabs-container {
   display: none;
@@ -8006,20 +7988,18 @@ select {
   }
 
   .mobile-fab-messages {
-    background: #6366f1; /* purple/indigo */
+    background: #6366f1; /* фиолетовый/индиго */
     box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
   }
 
   .mobile-fab-create {
-    background: #10b981; /* green */
+    background: #10b981; /* зеленый */
     box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
   }
 }
 
 
-/* 
-   MESSAGES 
-    */
+/* MESSAGES */
 
 .messages-layout-container {
   height: calc(100vh - 120px);
@@ -8055,7 +8035,7 @@ select {
 
 @media (max-width: 768px) {
   .messages-layout-container {
-    height: calc(100vh - 100px); /* Adjust height for mobile */
+    height: calc(100vh - 100px); /* Корректировка высоты для мобильных */
     min-height: unset;
     border-radius: 12px;
     border: none;
@@ -8090,7 +8070,7 @@ select {
   }
 }
 
-/* Center image horizontally within the card */
+/* Выравнивание фото по центру карточки */
 .card-link,
 .order-card-link {
   margin: 0 auto;
